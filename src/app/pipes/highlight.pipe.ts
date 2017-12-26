@@ -1,12 +1,26 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Pipe({
     name: 'highlight'
 })
 export class HighlightPipe implements PipeTransform {
 
-    transform(value: any, args?: any): any {
-        return null;
-    }
+    constructor(public sanitizer: DomSanitizer) { }
 
+    transform(text: string, search: string): SafeHtml {
+        if (search && text) {
+            let pattern = search.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+            pattern = pattern.split(' ').filter((t) => {
+                return t.length > 0;
+            }).join('|');
+            const regex = new RegExp(pattern, 'gi');
+            return this.sanitizer.bypassSecurityTrustHtml(
+                text.replace(regex, (match) => `<span style="color: black; background: yellow;">${match}</span>`)
+            );
+
+        } else {
+            return text;
+        }
+    }
 }
