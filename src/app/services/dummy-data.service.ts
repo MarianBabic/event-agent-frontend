@@ -218,11 +218,14 @@ export class DummyDataService {
     ];
 
     dummySimilarEvents: any = [
-        [this.dummyEvents[0], this.dummyEvents[1]],
-        [this.dummyEvents[2], this.dummyEvents[3]],
-        [this.dummyEvents[4], this.dummyEvents[5]],
-        [this.dummyEvents[7], this.dummyEvents[8]],
-        [this.dummyEvents[9], this.dummyEvents[10]]
+        [
+            [this.dummyEvents[0], this.dummyEvents[1]],
+            [this.dummyEvents[2], this.dummyEvents[3]],
+            [this.dummyEvents[4], this.dummyEvents[5]]
+        ], [
+            [this.dummyEvents[7], this.dummyEvents[8]],
+            [this.dummyEvents[9], this.dummyEvents[10]]
+        ]
     ];
 
 }

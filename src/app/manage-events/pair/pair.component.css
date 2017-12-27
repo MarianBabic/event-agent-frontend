@@ -1,0 +1,15 @@
+.b-b {
+    border-bottom: 1px solid #2e6da4;
+}
+.m-v {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.arrowDown {
+    margin-right: 10px;
+    cursor: pointer;
+}
+.arrowDown:after {
+    font-family: "Glyphicons Halflings";
+    content: "\e134";
+}

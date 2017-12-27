@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -7,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ManageEventsComponent } from './manage-events/manage-events.component';
 import { ManageResourcesComponent } from './manage-resources/manage-resources.component';
+import { PairComponent } from './manage-events/pair/pair.component';
 import { ViewEventsComponent } from './view-events/view-events.component';
 
 // pipes
@@ -29,11 +31,13 @@ const appRoutes: Routes = [
         HeaderComponent,
         ManageEventsComponent,
         ManageResourcesComponent,
+        PairComponent,
         ViewEventsComponent,
         HighlightPipe
     ],
     imports: [
         BrowserModule,
+        FormsModule,
         RouterModule.forRoot(
             appRoutes
         )
