@@ -18,8 +18,8 @@ export class PairComponent implements OnInit {
     ngOnInit() { }
 
     // TODO
-    onSubmit(index: number, form: NgForm): void {
-        console.log(form);
+    onSubmit(index: number): void {
+        console.log(this.form);
     }
 
     // TODO

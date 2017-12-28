@@ -30,11 +30,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 The application was developed and running with following dependencies:
 
-Node.js 8.9.3, 
-NPM 5.6.0, 
-Angular CLI 1.6.2, 
-Angular 5.0.0, 
-Typescript 2.4.2, 
-bootstrap 3.3.7, 
-ng4-geoautocomplete (Google place autocomplete) 0.0.9, 
+Node.js 8.9.3  
+NPM 5.6.0  
+Angular CLI 1.6.2  
+Angular 5.1.2  
+Typescript 2.4.2  
+bootstrap 3.3.7  
+ng4-geoautocomplete (Google place autocomplete) 0.0.9  
 Facebook Graph API 2.10

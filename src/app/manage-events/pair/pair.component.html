@@ -82,16 +82,18 @@
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">description:</div>
-                <textarea class="col-xs-9 col-sm-10" type="text" name="description" value="{{ form.description }}" placeholder="Type the description here or click on the arrow above..."
+                <textarea style="resize: vertical" class="col-xs-9 col-sm-10" type="text" name="description" value="{{ form.description }}" placeholder="Type the description here or click on the arrow above..."
                     ngModel required></textarea>
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">start_time:</div>
+                <!-- TODO: date format -->
                 <input class="col-xs-9 col-sm-10" type="datetime-local" name="start_time" value="{{ form.start_time | date:'yyyy-MM-ddTHH:mm' }}"
                     placeholder="Type the start time here or click on the arrow above..." ngModel required/>
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">end_time:</div>
+                <!-- TODO: date format -->
                 <input class="col-xs-9 col-sm-10" type="datetime-local" name="end_time" value="{{ form.end_time | date:'yyyy-MM-ddTHH:mm' }}"
                     placeholder="Type the end time here or click on the arrow above..." ngModel required/>
             </div>
@@ -106,7 +108,7 @@
     <!-- BUTTONS -->
     <div class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-0 m-v btn-group-vertical">
         <button class="btn btn-primary" *ngIf="hasForm" [disabled]="isDisabled" (click)="isFormShown = true; isDisabled = true;">Merge</button>
-        <!-- TODO: disabled, click -->
+        <!-- TODO: disabled &&  isFormShown && required fields, click -->
         <button class="btn btn-success" *ngIf="hasForm" disabled="form.pristine" (click)="onSubmit()">Submit</button>
         <!-- TODO: click -->
         <button class="btn btn-success" *ngIf="!hasForm" (click)="onSubmit()">Submit</button>
