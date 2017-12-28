@@ -7,11 +7,11 @@
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.name = pair[0].name"></span>
-                    {{ pair[0].name }}
+                    <span class="event1">{{ pair[0].name }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.name = pair[1].name"></span>
-                    {{ pair[1].name }}
+                    <span class="event2">{{ pair[1].name }}</span>
                 </div>
             </div>
         </div>
@@ -20,11 +20,11 @@
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.description = pair[0].description"></span>
-                    {{ pair[0].description }}
+                    <span class="event1">{{ pair[0].description }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.description = pair[1].description"></span>
-                    {{ pair[1].description }}
+                    <span class="event2">{{ pair[1].description }}</span>
                 </div>
             </div>
         </div>
@@ -33,11 +33,11 @@
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.start_time = pair[0].start_time"></span>
-                    {{ pair[0].start_time | date:'dd. MM. yyyy HH:mm' }}
+                    <span class="event1">{{ pair[0].start_time | date:'dd. MM. yyyy HH:mm' }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.start_time = pair[1].start_time"></span>
-                    {{ pair[1].start_time | date:'dd. MM. yyyy HH:mm' }}
+                    <span class="event2">{{ pair[1].start_time | date:'dd. MM. yyyy HH:mm' }}</span>
                 </div>
             </div>
         </div>
@@ -46,11 +46,11 @@
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.end_time = pair[0].end_time"></span>
-                    {{ pair[0].end_time | date:'dd. MM. yyyy HH:mm' }}
+                    <span class="event1">{{ pair[0].end_time | date:'dd. MM. yyyy HH:mm' }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.end_time = pair[1].end_time"></span>
-                    {{ pair[1].end_time | date:'dd. MM. yyyy HH:mm' }}
+                    <span class="event2">{{ pair[1].end_time | date:'dd. MM. yyyy HH:mm' }}</span>
                 </div>
             </div>
         </div>
@@ -59,11 +59,11 @@
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.placeName = pair[0].place.name"></span>
-                    {{ pair[0].place.name }}
+                    <span class="event1">{{ pair[0].place.name }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <span *ngIf="isFormShown" class="arrowDown" (click)="form.placeName = pair[1].place.name"></span>
-                    {{ pair[1].place.name }}
+                    <span class="event2">{{ pair[1].place.name }}</span>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">description:</div>
-                <textarea style="resize: vertical" class="col-xs-9 col-sm-10" type="text" name="description" value="{{ form.description }}" placeholder="Type the description here or click on the arrow above..."
+                <textarea class="col-xs-9 col-sm-10 textarea" type="text" name="description" value="{{ form.description }}" placeholder="Type the description here or click on the arrow above..."
                     ngModel required></textarea>
             </div>
             <div class="row">

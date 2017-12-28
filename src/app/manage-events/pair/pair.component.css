@@ -1,9 +1,11 @@
 .b-b {
     border-bottom: 1px solid #2e6da4;
 }
-.m-v {
-    margin-top: 10px;
-    margin-bottom: 10px;
+.event1 {
+    color: #093145;
+}
+.event2 {
+    color: #c2571a;
 }
 .arrowDown {
     margin-right: 10px;
@@ -12,4 +14,7 @@
 .arrowDown:after {
     font-family: "Glyphicons Halflings";
     content: "\e134";
+}
+.textarea {
+    resize: vertical;
 }
