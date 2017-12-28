@@ -36,5 +36,5 @@ Angular CLI 1.6.2
 Angular 5.1.2  
 Typescript 2.4.2  
 bootstrap 3.3.7  
-ng4-geoautocomplete (Google place autocomplete) 0.0.9  
+ng4-geoautocomplete (Google place autocomplete) 0.1.0  
 Facebook Graph API 2.10

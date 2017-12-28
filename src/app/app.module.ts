@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 
 // components
 import { AppComponent } from './app.component';
@@ -38,9 +41,11 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         FormsModule,
+        HttpClientModule,
         RouterModule.forRoot(
             appRoutes
-        )
+        ),
+        Ng4GeoautocompleteModule.forRoot()
     ],
     providers: [DummyDataService, RestService],
     bootstrap: [AppComponent]

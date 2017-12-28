@@ -1,3 +1,80 @@
-<p>
-    view-events works!
-</p>
+<div class="col-xs-12">
+
+    <!-- INPUTS -->
+    <div class="header b m-v">
+        <div class="m-v">
+            <div class="col-xs-12 col-sm-6">
+                <ng4geo-autocomplete (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>
+            </div>
+            <!-- TODO: input for range, input for start_date, input for end_date -->
+            <div class="col-xs-12 col-sm-6"></div>
+        </div>
+        <!-- TODO -->
+        <div class="filter m-v">
+            <div class="col-xs-8">
+                <div class="col-xs-4">{{ events.length }} of {{ dummyDataService.dummyEvents.length }} events</div>
+                <input #textbox class="col-xs-8 b" type="text" placeholder="Filter events by name/place/description..." (keyup)="filterEvents(textbox.value)"
+                    [disabled]="dummyDataService.dummyEvents.length === 0" />
+            </div>
+            <div class="switcher" (click)="isCheckingActive = !isCheckingActive">
+                <span>Mark related events</span>
+                <span class="glyphicon" [ngClass]="isCheckingActive ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span>
+            </div>
+        </div>
+        <!-- TODO -->
+        <div class="col-xs-12 m-v b-t" [hidden]="!isCheckingActive">
+            <div class="col-xs-4 col-sm-3">{{ checkedEvents.size }} checked events</div>
+            <div class="col-xs-4 col-sm-3">
+                <input class="checkbox-inline m-r" type="checkbox" [value]="checkedCheckbox" (change)="showCheckedEvents()" />
+                <span>Show checked only</span>
+            </div>
+            <div class="col-xs-4 col-sm-3">
+                <button class="btn btn-success" [disabled]="checkedEvents.size !== 2" (click)="submitCheckedEvents()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVENT -->
+    <div class="col-xs-12 col-sm-6 m-v" *ngFor="let event of events">
+        <div class="btn btn-primary event">
+            <div style="overflow: hidden;">
+                <div style="display: flex;">
+                    <input class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)" />
+                    <div class="event-row" [innerHTML]="event.name | highlight: textbox.value"></div>
+                </div>
+                <div class="event-row" [innerHTML]="event.place.name | highlight: textbox.value"></div>
+                <div class="event-row">{{ event.start_time | date:'dd. MM. yyyy HH:mm' }} - {{ event.end_time | date:'dd. MM. yyyy HH:mm' }}</div>
+                <div class="event-row" [innerHTML]="event.description | highlight: textbox.value"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="col-xs-12 col-sm-6">
+        <div class="event-old">
+            <div class="row event-row">
+                <div class="col-xs-4">name:</div>
+                <div class="col-xs-7" [innerHTML]="events[0].name | highlight: textbox.value"></div>
+                <div class="col-xs-1">
+                    <input *ngIf="isCheckingActive" class="checkbox-inline" type="checkbox" (change)="toggleCheckedEvent(event.id)" />
+                </div>
+            </div>
+            <div class="row event-row">
+                <div class="col-xs-4">description:</div>
+                <div class="col-xs-8" [innerHTML]="events[0].description | highlight: textbox.value"></div>
+            </div>
+            <div class="row event-row">
+                <div class="col-xs-4">start_time:</div>
+                <div class="col-xs-8">{{ events[0].start_time | date:'medium' }}</div>
+            </div>
+            <div class="row event-row">
+                <div class="col-xs-4">end_time:</div>
+                <div class="col-xs-8">{{ events[0].end_time | date:'medium' }}</div>
+            </div>
+            <div class="row event-row">
+                <div class="col-xs-4">place:</div>
+                <div class="col-xs-8" [innerHTML]="events[0].place.name | highlight: textbox.value"></div>
+            </div>
+        </div>
+    </div> -->
+
+</div>

@@ -26,11 +26,11 @@ export class DummyDataService {
             "id": "137423570205629"
         },
         {
-            "description": "Test description 1",
-            "end_time": "2017-11-01T10:00:00+0200",
-            "name": "Test name 1",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "end_time": "2017-11-01T11:00:00+0200",
+            "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
             "place": {
-                "name": "Test place 1",
+                "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                 "location": {
                     "city": "Košice",
                     "country": "Slovakia",
@@ -41,12 +41,12 @@ export class DummyDataService {
                 },
                 "id": "000000000000000"
             },
-            "start_time": "2017-11-01T11:00:00+0200",
+            "start_time": "2017-11-01T10:00:00+0200",
             "id": "000000000000001"
         },
         {
             "description": "Test description 2",
-            "end_time": "2017-11-02T11:00:00+0200",
+            "end_time": "2017-11-02T12:30:00+0200",
             "name": "Test name 2",
             "place": {
                 "name": "Test place 2",
@@ -65,7 +65,7 @@ export class DummyDataService {
         },
         {
             "description": "Test description 3",
-            "end_time": "2017-11-03T12:00:00+0200",
+            "end_time": "2017-11-03T14:00:00+0200",
             "name": "Test name 3",
             "place": {
                 "name": "Test place 3",
@@ -84,7 +84,7 @@ export class DummyDataService {
         },
         {
             "description": "Test description 4",
-            "end_time": "2017-11-04T13:00:00+0200",
+            "end_time": "2017-11-04T15:00:00+0200",
             "name": "Test name 4",
             "place": {
                 "name": "Test place 4",
@@ -103,7 +103,7 @@ export class DummyDataService {
         },
         {
             "description": "Test description 5",
-            "end_time": "2017-11-05T14:00:00+0200",
+            "end_time": "2017-11-05T20:00:00+0200",
             "name": "Test name 5",
             "place": {
                 "name": "Test place 5",
@@ -122,7 +122,7 @@ export class DummyDataService {
         },
         {
             "description": "Test description 6",
-            "end_time": "2017-11-06T15:00:00+0200",
+            "end_time": "2017-11-06T19:00:00+0200",
             "name": "Test name 6",
             "place": {
                 "name": "Test place 6",
@@ -155,12 +155,12 @@ export class DummyDataService {
                 },
                 "id": "666666666666666"
             },
-            "start_time": "2017-11-07T17:00:00+0200",
+            "start_time": "2017-11-07T07:00:00+0200",
             "id": "666666666666667"
         },
         {
             "description": "Test description 8",
-            "end_time": "2017-11-08T17:00:00+0200",
+            "end_time": "2017-11-08T18:10:00+0200",
             "name": "Test name 8",
             "place": {
                 "name": "Test place 8",
@@ -193,7 +193,7 @@ export class DummyDataService {
                 },
                 "id": "888888888888888"
             },
-            "start_time": "2017-11-09T19:00:00+0200",
+            "start_time": "2017-11-09T15:00:00+0200",
             "id": "888888888888889"
         },
         {
@@ -212,7 +212,7 @@ export class DummyDataService {
                 },
                 "id": "999999999999999"
             },
-            "start_time": "2017-11-10T20:00:00+0200",
+            "start_time": "2017-11-10T10:00:00+0200",
             "id": "999999999999990"
         }
     ];
