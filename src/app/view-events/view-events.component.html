@@ -13,7 +13,7 @@
         <div class="filter m-v">
             <div class="col-xs-8">
                 <div class="col-xs-4">{{ events.length }} of {{ dummyDataService.dummyEvents.length }} events</div>
-                <input #textbox class="col-xs-8 b" type="text" placeholder="Filter events by name/place/description..." (keyup)="filterEvents(textbox.value)"
+                <input #textbox class="col-xs-8" type="text" placeholder="Filter events by name/place/description..." (keyup)="filterEvents(textbox.value)"
                     [disabled]="dummyDataService.dummyEvents.length === 0" />
             </div>
             <div class="switcher" (click)="isCheckingActive = !isCheckingActive">

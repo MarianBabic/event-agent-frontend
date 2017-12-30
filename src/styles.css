@@ -6,3 +6,12 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.search-icon, .line-recent {
+    /* overrides default third party component's style */
+    border-color: #2e6da4 !important;
+}
+.b, input, ul {
+    /* 'input' and 'ul' override default third party component's style too */
+    border: 1px solid #2e6da4 !important;
+    border-radius: 4px;
+}
