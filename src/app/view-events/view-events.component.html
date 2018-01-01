@@ -1,13 +1,32 @@
 <div class="col-xs-12">
 
+    <!-- TODO -->
     <!-- INPUTS -->
     <div class="header b m-v">
         <div class="m-v">
+            <!-- GOOGLE PLACE -->
             <div class="col-xs-12 col-sm-6">
                 <ng4geo-autocomplete (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>
             </div>
-            <!-- TODO: input for range, input for start_date, input for end_date -->
-            <div class="col-xs-12 col-sm-6"></div>
+            <div class="col-xs-12 col-sm-6">
+                <!-- FROM DATE -->
+                <div class="col-xs-12 col-md-6 m-t">
+                    <div class="col-xs-3">From:</div>
+                    <input class="col-xs-9" type="datetime-local" value="{{ getCurrentDate() | date:'yyyy-MM-ddTHH:mm' }}" />
+                </div>
+                <!-- TO DATE -->
+                <div class="col-xs-12 col-md-6 m-t">
+                    <div class="col-xs-3">To:</div>
+                    <input class="col-xs-9" type="datetime-local" value="{{ getDatePlusWeek() | date:'yyyy-MM-ddTHH:mm' }}" />
+                </div>
+                <div class="col-xs-12 m-t">
+                    <!-- RANGE -->
+                    <div class="col-xs-3">Range (km):</div>
+                    <input class="col-xs-2" type="number" min="0" step="1" value="1" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
+                    <!-- SEARCH BUTTON -->
+                    <button class="col-xs-offset-3 btn btn-success">Search events</button>
+                </div>
+            </div>
         </div>
         <!-- TODO -->
         <div class="filter m-v">

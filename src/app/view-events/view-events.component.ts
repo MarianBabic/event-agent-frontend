@@ -29,6 +29,16 @@ export class ViewEventsComponent implements OnInit {
         //     });
     }
 
+    getCurrentDate(): Date {
+        return new Date();
+    }
+
+    getDatePlusWeek(): Date {
+        var d = new Date();
+        d.setDate(d.getDate() + 7);
+        return d;
+    }
+
     // TODO
     filterEvents(text: string): void {
         text = text.toUpperCase();
