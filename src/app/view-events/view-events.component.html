@@ -58,7 +58,8 @@
         <div class="btn btn-primary event" (click)="openEventDetailModal(event)">
             <div style="overflow: hidden;">
                 <div style="display: flex;">
-                    <input class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)" />
+                    <input class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)" (click)="$event.stopPropagation()"
+                    />
                     <div class="event-row" [innerHTML]="event.name | highlight: textbox.value"></div>
                 </div>
                 <div class="event-row" [innerHTML]="event.place.name | highlight: textbox.value"></div>

@@ -12,4 +12,9 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
     }
 
+    // FB uz je verzia 2.11
+    /**
+     * info o uzivatelovi: /me?fields=name
+     */
+
 }
