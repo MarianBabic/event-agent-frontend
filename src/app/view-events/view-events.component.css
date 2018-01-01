@@ -28,22 +28,3 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
-
-
-.event-old {
-    /* height: 250px; */
-    /* padding: 10px;
-    margin-right: 0;
-    margin-left: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid #2e6da4;
-    border-radius: 4px;
-    color: white;
-    background: #337ab7; */
-}
-.event-row {
-    /* display: flex;
-    margin-top: 15px; */
-}

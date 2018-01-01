@@ -55,7 +55,7 @@
 
     <!-- EVENT -->
     <div class="col-xs-12 col-sm-6 m-v" *ngFor="let event of events">
-        <div class="btn btn-primary event">
+        <div class="btn btn-primary event" (click)="openEventDetailModal(event)">
             <div style="overflow: hidden;">
                 <div style="display: flex;">
                     <input class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)" />
@@ -68,32 +68,7 @@
         </div>
     </div>
 
-    <!-- <div class="col-xs-12 col-sm-6">
-        <div class="event-old">
-            <div class="row event-row">
-                <div class="col-xs-4">name:</div>
-                <div class="col-xs-7" [innerHTML]="events[0].name | highlight: textbox.value"></div>
-                <div class="col-xs-1">
-                    <input *ngIf="isCheckingActive" class="checkbox-inline" type="checkbox" (change)="toggleCheckedEvent(event.id)" />
-                </div>
-            </div>
-            <div class="row event-row">
-                <div class="col-xs-4">description:</div>
-                <div class="col-xs-8" [innerHTML]="events[0].description | highlight: textbox.value"></div>
-            </div>
-            <div class="row event-row">
-                <div class="col-xs-4">start_time:</div>
-                <div class="col-xs-8">{{ events[0].start_time | date:'medium' }}</div>
-            </div>
-            <div class="row event-row">
-                <div class="col-xs-4">end_time:</div>
-                <div class="col-xs-8">{{ events[0].end_time | date:'medium' }}</div>
-            </div>
-            <div class="row event-row">
-                <div class="col-xs-4">place:</div>
-                <div class="col-xs-8" [innerHTML]="events[0].place.name | highlight: textbox.value"></div>
-            </div>
-        </div>
-    </div> -->
+    <!-- EVENT DETAIL MODAL -->
+    <app-event-detail-modal [event]="clickedEvent"></app-event-detail-modal>
 
 </div>

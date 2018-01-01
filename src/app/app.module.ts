@@ -14,12 +14,16 @@ import { ManageResourcesComponent } from './manage-resources/manage-resources.co
 import { PairComponent } from './manage-events/pair/pair.component';
 import { ViewEventsComponent } from './view-events/view-events.component';
 
+// modals
+import { EventDetailModalComponent } from './modals/event-detail-modal/event-detail-modal.component';
+
 // pipes
 import { HighlightPipe } from './pipes/highlight.pipe';
 
 // services
 import { DummyDataService } from './services/dummy-data.service';
 import { RestService } from './services/rest.service';
+import { SharedDataService } from './services/shared-data.service';
 
 const appRoutes: Routes = [
     { path: 'home', component: ViewEventsComponent },
@@ -36,6 +40,7 @@ const appRoutes: Routes = [
         ManageResourcesComponent,
         PairComponent,
         ViewEventsComponent,
+        EventDetailModalComponent,
         HighlightPipe
     ],
     imports: [
@@ -47,7 +52,7 @@ const appRoutes: Routes = [
         ),
         Ng4GeoautocompleteModule.forRoot()
     ],
-    providers: [DummyDataService, RestService],
+    providers: [DummyDataService, RestService, SharedDataService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DummyDataService } from '../services/dummy-data.service';
+import { SharedDataService } from '../services/shared-data.service';
+
+var eventDetailModal: HTMLElement;
 
 @Component({
     selector: 'app-view-events',
@@ -14,8 +17,10 @@ export class ViewEventsComponent implements OnInit {
     isCheckingActive: boolean = false;
     checkedEvents: Set<number> = new Set();
     checkedCheckbox: boolean = false;
+    
+    clickedEvent: any;
 
-    constructor(public dummyDataService: DummyDataService) { }
+    constructor(public dummyDataService: DummyDataService, private sharedDataService: SharedDataService) { }
 
     // TODO
     ngOnInit() {
@@ -27,6 +32,21 @@ export class ViewEventsComponent implements OnInit {
         //     err => {
         //         alert('No data from server were loaded!');
         //     });
+
+        // get the event detail modal
+        eventDetailModal = document.getElementById('eventDetailModal');
+
+        // when the user clicks anywhere outside of the event detail modal, close it
+        window.onclick = function (event) {
+            if (event.target == eventDetailModal) {
+                eventDetailModal.style.display = "none";
+            }
+        }
+    }
+
+    openEventDetailModal(event: any): void {
+        this.clickedEvent = event;
+        eventDetailModal.style.display = 'block';
     }
 
     getCurrentDate(): Date {
