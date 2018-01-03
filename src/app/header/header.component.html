@@ -11,3 +11,11 @@
         </div>
     </div>
 </div>
+
+<!-- CONFIRMATION MESSAGE -->
+<div class="col-xs-12 confirmation-message" *ngIf="sharedDataService.isConfirmationMessageShown()">
+    <div class="col-xs-11">{{ sharedDataService.confirmationMessage }}</div>
+    <button type="button" class="col-xs-1 close" aria-label="Close" (click)="sharedDataService.closeConfirmationMessage()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

@@ -1,0 +1,11 @@
+.confirmation-message {
+    padding: 6px 12px;
+    font-size: 14px;
+    min-height: 30px;
+    color: #fff;
+    background: #f0ad4e;
+}
+/* override bootstrap's close class */
+.close {
+    text-align: right;
+}
