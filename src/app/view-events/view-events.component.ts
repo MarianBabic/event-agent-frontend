@@ -86,11 +86,8 @@ export class ViewEventsComponent implements OnInit {
 
     // TODO
     submitCheckedEvents(): void {
-        let entries: string = 'Events IDs:';
-        this.checkedEvents.forEach(event => {
-            entries += '\n' + event;
-        });
-        alert(entries);
+        this.sharedDataService.openSubmitModal();
+        this.sharedDataService.submitModal.events = this.checkedEvents;
     }
 
     // TODO

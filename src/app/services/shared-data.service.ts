@@ -4,8 +4,14 @@ import { Injectable } from '@angular/core';
 export class SharedDataService {
 
     confirmationMessage: string = '';
+    submitModal: any = {
+        modal: HTMLElement,
+        events: <any>[]
+    }
 
     constructor() { }
+
+    /* CONFIRMATION MESSAGES */
 
     isConfirmationMessageShown(): boolean {
         return this.confirmationMessage.length !== 0;
@@ -17,6 +23,17 @@ export class SharedDataService {
 
     showConfirmationMessage(message: string): void {
         this.confirmationMessage = message;
+    }
+
+    /* SUBMIT MODAL */
+
+    openSubmitModal(): void {
+        this.submitModal.modal = document.getElementById('submitModal');
+        this.submitModal.modal.style.display = 'block';
+    }
+
+    closeSubmitModal(): void {
+        this.submitModal.modal.style.display = 'none';
     }
 
 }

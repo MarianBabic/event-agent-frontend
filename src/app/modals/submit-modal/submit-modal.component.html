@@ -1,0 +1,28 @@
+<div id="submitModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            Mark the events as related:
+            <button type="button" class="close" aria-label="Close" (click)="sharedDataService.closeSubmitModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div *ngIf="sharedDataService.submitModal.events">
+                Events IDs:
+                <div *ngFor="let event of sharedDataService.submitModal.events">
+                    {{ event }}
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="btn-group">
+                <button class="btn btn-danger" (click)="sharedDataService.closeSubmitModal()">Cancel</button>
+                <button class="btn btn-success">Submit</button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -16,6 +16,7 @@ import { ViewEventsComponent } from './view-events/view-events.component';
 
 // modals
 import { EventDetailModalComponent } from './modals/event-detail-modal/event-detail-modal.component';
+import { SubmitModalComponent } from './modals/submit-modal/submit-modal.component';
 
 // pipes
 import { HighlightPipe } from './pipes/highlight.pipe';
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
         PairComponent,
         ViewEventsComponent,
         EventDetailModalComponent,
+        SubmitModalComponent,
         HighlightPipe
     ],
     imports: [
