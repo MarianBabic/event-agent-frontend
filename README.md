@@ -28,13 +28,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-The application was developed and running with following dependencies:
+The application was developed and running on Google Chrome 64.0.3282.119 with following dependencies:
 
 Node.js 8.9.3  
 NPM 5.6.0  
 Angular CLI 1.6.2  
-Angular 5.1.2  
-Typescript 2.5.3  
+Angular 5.2.2  
+Typescript 2.6.2  
 bootstrap 3.3.7  
 ng4-geoautocomplete (Google place autocomplete) 0.1.0  
 Facebook Graph API 2.10
