@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SharedDataService {
 
+    isAdmin: boolean = false;
+
     confirmationMessage: string = '';
     submitModal: any = {
         modal: HTMLElement,

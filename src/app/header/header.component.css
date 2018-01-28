@@ -1,3 +1,17 @@
+/* TODO: 3x */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+.header-logo {
+    display: flex;
+}
+.header-logo-text {
+    font-size: 25px;
+    margin-left: 10px;
+}
+
 .confirmation-message {
     padding: 6px 12px;
     font-size: 14px;
