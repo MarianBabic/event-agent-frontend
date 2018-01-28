@@ -37,4 +37,4 @@ Angular 5.2.2
 Typescript 2.6.2  
 bootstrap 3.3.7  
 ng4-geoautocomplete (Google place autocomplete) 0.1.0  
-Facebook Graph API 2.10
+Facebook Graph API 2.11

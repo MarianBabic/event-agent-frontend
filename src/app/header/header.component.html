@@ -5,8 +5,11 @@
             <!-- TODO: vymazat click -->
             <div class="header-logo-text" (click)="this.sharedDataService.isAdmin = !this.sharedDataService.isAdmin">Event Agent</div>
         </div>
-        <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true"
-            data-use-continue-as="true" scope="public_profile,email">
+        <div>
+            <span>{{ userName }}</span>
+            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false"
+                data-auto-logout-link="true" data-use-continue-as="true" scope="public_profile,email">
+            </div>
         </div>
     </div>
     <div *ngIf="this.sharedDataService.isAdmin">
