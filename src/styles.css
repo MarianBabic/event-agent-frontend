@@ -3,6 +3,9 @@ body {
     background: beige;
 }
 
+.m-r {
+    margin-right: 5px !important;
+}
 .m-v {
     margin-top: 10px;
     margin-bottom: 10px;

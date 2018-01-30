@@ -2,25 +2,39 @@
     <div class="modal-content">
 
         <div class="modal-header">
-            Mark the events as related:
+            <div class="btn-group">
+                <button type="button" [class]="isHintTypeIdentical ? 'btn btn-primary' : 'btn btn-default'" (click)="setHintType(true)">Mark the events as identical:</button>
+                <button type="button" [class]="!isHintTypeIdentical ? 'btn btn-primary' : 'btn btn-default'" (click)="setHintType(false)">Mark the events as nested:</button>
+            </div>
             <button type="button" class="close" aria-label="Close" (click)="sharedDataService.closeSubmitModal()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
         <div class="modal-body">
-            <div *ngIf="sharedDataService.submitModal.events">
+            <div *ngIf="isHintTypeIdentical; else nestedEvents">
                 Events IDs:
                 <div *ngFor="let event of sharedDataService.submitModal.events">
                     {{ event }}
                 </div>
             </div>
+            <ng-template #nestedEvents>
+                <span>Choose which one is the parent event and which one is the child one:</span>
+                <div *ngFor="let event of sharedDataService.submitModal.events">
+                    <!-- TODO: checked and disabled conditions -->
+                    <input class="checkbox-inline m-r" type="checkbox" [checked]="false" [disabled]="false" />
+                    <label class="form-check-label m-r-extra">Parent</label>
+                    <input class="checkbox-inline m-r" type="checkbox" [checked]="false" [disabled]="false" />
+                    <label class="form-check-label m-r-extra">Child</label>
+                    {{ event }}
+                </div>
+            </ng-template>
         </div>
 
         <div class="modal-footer">
             <div class="btn-group">
-                <button class="btn btn-danger" (click)="sharedDataService.closeSubmitModal()">Cancel</button>
-                <button class="btn btn-success">Submit</button>
+                <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                <button class="btn btn-success" (click)="onSubmit()">Submit</button>
             </div>
         </div>
 
