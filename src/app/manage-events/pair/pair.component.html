@@ -108,12 +108,10 @@
     <!-- BUTTONS -->
     <div class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-0 m-v btn-group-vertical">
         <button class="btn btn-primary" *ngIf="hasForm" [disabled]="isDisabled" (click)="isFormShown = true; isDisabled = true;">Merge</button>
-        <!-- TODO: disabled &&  isFormShown && required fields, click -->
-        <button class="btn btn-success" *ngIf="hasForm" disabled="form.pristine" (click)="onSubmit()">Submit</button>
-        <!-- TODO: click -->
+        <!-- TODO: disabled &&  isFormShown && required fields -->
+        <button class="btn btn-success" *ngIf="hasForm" [disabled]="!form || !isFormValid()" (click)="onSubmit()">Submit</button>
         <button class="btn btn-success" *ngIf="!hasForm" (click)="onSubmit()">Submit</button>
-        <!-- TODO: click -->
-        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
 
 </div>
