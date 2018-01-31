@@ -28,7 +28,9 @@ export class SubmitModalComponent implements OnInit {
         this.sharedDataService.closeSubmitModal();
         // TODO: zobrazit mena eventov namiesto ich id
         let idsIiterator = this.sharedDataService.submitModal.events.values();
-        this.sharedDataService.confirmationMessage = `You have hinted 2 events as similar: 'id1: ${idsIiterator.next().value}' & 'id2: ${idsIiterator.next().value}'`;
+        this.sharedDataService.confirmationMessage = this.isHintTypeIdentical
+            ? `You have hinted 2 events as identical: 'id1: ${idsIiterator.next().value}' & 'id2: ${idsIiterator.next().value}'`
+            : `You have hinted that the event 'id1: ${idsIiterator.next().value}' is parent of the event 'id2: ${idsIiterator.next().value}'`;
     }
 
 }

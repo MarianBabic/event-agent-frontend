@@ -3,9 +3,11 @@
         <div class="header-logo">
             <img src="/assets/fb-events.jpg" alt="fb-events" height="32" width="57">
             <!-- TODO: vymazat click -->
-            <div class="header-logo-text" (click)="this.sharedDataService.isAdmin = !this.sharedDataService.isAdmin">Event Agent</div>
+            <div class="header-logo-text">Event Agent</div>
         </div>
         <div>
+            <!-- TODO: vymazat tento button -->
+            <button class="btn btn=default m-r" (click)="this.sharedDataService.isAdmin = !this.sharedDataService.isAdmin">isAdmin: {{ this.sharedDataService.isAdmin }}</button>
             <span>{{ userName }}</span>
             <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false"
                 data-auto-logout-link="true" data-use-continue-as="true" scope="public_profile,email">
