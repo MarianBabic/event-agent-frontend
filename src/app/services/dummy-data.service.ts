@@ -228,4 +228,17 @@ export class DummyDataService {
         ]
     ];
 
+    dummySources: any = [
+        {
+            added: '2018-02-10T17:59:24+01:00', downloadFrequencyInHours: 1, eventDefaultType: 'movie', lastCheckResult: 'not_checked',
+            lastCheckTime: '2018-02-10T17:59:24+01:00', nextCheckTime: '2018-02-10T18:59:24+01:00', sourceType: 'page',
+            sourceURL: '331514527167'
+        },
+        {
+            added: '2018-02-10T17:59:24+01:00', downloadFrequencyInHours: 2, eventDefaultType: 'concert', lastCheckResult: 'not_checked',
+            lastCheckTime: '2018-02-10T17:59:24+01:00', nextCheckTime: '2018-02-10T18:59:24+01:00', sourceType: 'page',
+            sourceURL: '331514527167'
+        }
+    ];
+
 }

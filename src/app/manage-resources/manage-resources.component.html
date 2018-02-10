@@ -1,9 +1,86 @@
 <div class="col-xs-12">
-    <h4>TODO:</h4>
-    <ul>
-        <li>Add new resource</li>
-        <li>Edit frequency of downloading events from each resource</li>
-        <li>Delete resource</li>
-        <li>Manage deduplication algorithm</li>
-    </ul>
+
+    <!-- ADD NEW ADMIN -->
+    <h3 class="btn btn-primary header m-v">Add New Admin:</h3>
+    <div class="col-xs-12">
+        <input class="col-xs-6" type="number" min="1" step="1" placeholder="Enter user ID..." [(ngModel)]="newAdmin" />
+        <button class="col-xs-2 col-xs-offset-1 btn btn-success" [disabled]="!newAdmin" (click)="addNewAdmin()">Add</button>
+    </div>
+
+    <!-- SOURCES -->
+    <h3 class="btn btn-primary header m-v">Sources:</h3>
+
+    <div class="col-xs-12" *ngIf="sources && sources.length; else noSources">
+        <div class="col-xs-12 col-sm-6 m-v" *ngFor="let source of sources">
+            <div class="btn btn-primary" style="display: flex; text-align: left;">
+                <div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Source URL:</div>
+                        <div class="col-xs-6">{{ source.sourceURL }}</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Source Type:</div>
+                        <div class="col-xs-6">{{ source.sourceType }}</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Event Default Type:</div>
+                        <div class="col-xs-6">{{ source.eventDefaultType }}</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Download frequency:</div>
+                        <div class="col-xs-6">
+                            <input #newFrequency class="col-xs-5 black" type="number" min="0" step="1" value="{{ source.downloadFrequencyInHours }}"
+                            /> hour(s)
+                            <button class="btn btn-success" (click)="updateFrequency(source, newFrequency.value)">Change</button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Added:</div>
+                        <div class="col-xs-6">{{ source.added | date:'dd. MM. yyyy HH:mm' }}</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Last Check Result:</div>
+                        <div class="col-xs-6">{{ source.lastCheckResult }}</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Last Check Type:</div>
+                        <div class="col-xs-6">{{ source.lastCheckTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">Next Check Type:</div>
+                        <div class="col-xs-6">{{ source.nextCheckTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button class="btn btn-danger" (click)="deleteSource(source)">Delete this source</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #noSources>No sources found!</ng-template>
+
+    <div class="col-xs-12">
+        Add new source:
+        <div class="col-xs-12">
+            <!-- <div class="col-xs-10">
+                <div class="col-xs-12 col-md-6">
+                    <input class="black" type="number" min="0" step="1" placeholder="Enter source url..." [(ngModel)]="newSource.source" />
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <input class="black" type="number" min="0" step="1" placeholder="Enter frequency..." [(ngModel)]="newSource.frequency" />
+                </div>
+                <div class="col-xs-6 col-md-6">
+
+                </div>
+                <div class="col-xs-6 col-md-6">
+
+                </div>
+            </div> -->
+            <div class="col-xs-2">
+                <button class="btn btn-success" (click)="addSource()" [disabled]="!newSource">Add</button>
+            </div>
+        </div>
+    </div>
+
 </div>

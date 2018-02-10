@@ -3,13 +3,21 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SharedDataService {
 
-    isAdmin: boolean = false;
+    // TODO: change to false
+    isAdmin: boolean = true;
 
     confirmationMessage: string = '';
     submitModal: any = {
         modal: HTMLElement,
         events: <any>[]
     }
+
+    newSourceTemplate: {
+        defaultType: '',
+        frequency: 0,
+        source: 0,
+        sourceType: '',
+    };
 
     constructor() { }
 

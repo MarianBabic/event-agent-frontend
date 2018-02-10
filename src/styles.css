@@ -11,6 +11,11 @@ body {
     margin-bottom: 10px;
 }
 
+.header {
+    width: 100%;
+    cursor: default;
+}
+
 .search-icon, .line-recent {
     /* overrides default third party component's style */
     border-color: #2e6da4 !important;
