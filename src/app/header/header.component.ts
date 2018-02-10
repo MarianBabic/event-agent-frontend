@@ -12,13 +12,14 @@ declare var FB: any;
 })
 export class HeaderComponent implements OnInit {
 
+    userId: number;
     userName: string = '';
 
     constructor(private router: Router, public sharedDataService: SharedDataService) {
         FB.init({
-            appId: '135544077099212',
+            appId: '168254080466042',
             xfbml: true,  // parse social plugins on this page
-            version: 'v2.11' // use graph api version 2.11
+            version: 'v2.12' // use graph api version 2.12
         });
     }
 
@@ -32,7 +33,12 @@ export class HeaderComponent implements OnInit {
 
     getUserName(): void {
         // 2nd option: get id as parameter and exchange me <=> `/${id}`
-        FB.api('me/', (response) => { if (response && !response.error) this.userName = response.name });
+        FB.api('me/', (response) => {
+            if (response && !response.error) {
+                this.userId = response.id;
+                this.userName = response.name;
+            }
+        });
     }
 
     statusChangeCallback(response) {
@@ -58,6 +64,10 @@ export class HeaderComponent implements OnInit {
             this.sharedDataService.isAdmin = false;
             this.router.navigate(['/home']);
         }
+    }
+
+    showUserId(): void {
+        alert('My user ID is: ' + this.userId);
     }
 
 }
