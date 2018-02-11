@@ -10,11 +10,15 @@ export class RestService {
     constructor(private http: HttpClient) { }
 
     /*
-        ADD NEW ADMIN
+        ADMIN
     */
 
-    addNewAdmin(body) {
+    addNewAdmin(body): Observable<any> {
         return this.http.post(`${this.host}/admin`, body);
+    }
+
+    isAdmin(id): Observable<any> {
+        return this.http.get(`${this.host}/admin/${id}`);
     }
 
     /*

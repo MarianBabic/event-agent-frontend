@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class EventDetailModalComponent implements OnInit {
 
     @Input() event: any;
+    @Input() filter: string;
 
     constructor() { }
 

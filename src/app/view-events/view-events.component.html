@@ -53,8 +53,8 @@
         <div class="btn btn-primary event" (click)="openEventDetailModal(event)">
             <div style="overflow: hidden;">
                 <div style="display: flex;">
-                    <input class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)" (click)="$event.stopPropagation()"
-                    />
+                    <input #checkbox class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)"
+                        (click)="$event.stopPropagation()" [disabled]="checkedEvents.size === 2 && !checkbox.checked" />
                     <div class="event-row" [innerHTML]="event.name | highlight: textbox.value"></div>
                 </div>
                 <div class="event-row" [innerHTML]="event.place.name | highlight: textbox.value"></div>
@@ -65,6 +65,6 @@
     </div>
 
     <!-- EVENT DETAIL MODAL -->
-    <app-event-detail-modal [event]="clickedEvent"></app-event-detail-modal>
+    <app-event-detail-modal [event]="clickedEvent" [filter]="textbox.value"></app-event-detail-modal>
 
 </div>

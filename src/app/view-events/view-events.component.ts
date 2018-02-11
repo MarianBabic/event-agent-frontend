@@ -17,7 +17,7 @@ export class ViewEventsComponent implements OnInit {
     isCheckingActive: boolean = false;
     checkedEvents: Set<number> = new Set();
     checkedCheckbox: boolean = false;
-    
+
     clickedEvent: any;
 
     constructor(public dummyDataService: DummyDataService, private sharedDataService: SharedDataService) { }
