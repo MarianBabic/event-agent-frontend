@@ -54,7 +54,7 @@ export class ManageResourcesComponent implements OnInit {
     }
 
     addSource(): void {
-        this.restService.addSource(this.newSource).subscribe();
+        this.restService.addSource(this.newSource).subscribe(newSource => this.sources.push(newSource));
         this.sharedDataService.confirmationMessage = `You have added new event source: '${this.newSource.source}'`;
         this.newSource = {
             defaultType: null,
