@@ -12,13 +12,6 @@ export class SharedDataService {
         events: <any>[]
     }
 
-    newSourceTemplate: {
-        defaultType: '',
-        frequency: 0,
-        source: 0,
-        sourceType: '',
-    };
-
     constructor() { }
 
     /* CONFIRMATION MESSAGES */

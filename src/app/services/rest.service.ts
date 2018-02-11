@@ -9,22 +9,32 @@ export class RestService {
 
     constructor(private http: HttpClient) { }
 
+    /*
+        ADD NEW ADMIN
+    */
+
     addNewAdmin(body) {
         return this.http.post(`${this.host}/admin`, body);
     }
 
-    // EVENT SOURCES
+    /*
+        EVENT SOURCES
+    */
 
     addSource(body): Observable<any> {
         return this.http.post(`${this.host}/eventsource`, body);
     }
 
-    updateSourceFrequency(source, frequency) {
+    updateSourceFrequency(source, frequency): Observable<any> {
         return this.http.put(`${this.host}/eventsource/${source}/${frequency}`, {});
     }
 
     getSources(): Observable<any> {
         return this.http.get(`${this.host}/eventsource`);
+    }
+
+    getTypes(): Observable<any> {
+        return this.http.get(`${this.host}/getTypes`);
     }
 
     deleteSource(source): Observable<any> {

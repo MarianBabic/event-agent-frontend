@@ -16,6 +16,19 @@ body {
     cursor: default;
 }
 
+.defaultCursor {
+    cursor: default;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.event {
+    display: flex;
+    text-align: left;
+}
+
 .search-icon, .line-recent {
     /* overrides default third party component's style */
     border-color: #2e6da4 !important;

@@ -237,8 +237,21 @@ export class DummyDataService {
         {
             added: '2018-02-10T17:59:24+01:00', downloadFrequencyInHours: 2, eventDefaultType: 'concert', lastCheckResult: 'not_checked',
             lastCheckTime: '2018-02-10T17:59:24+01:00', nextCheckTime: '2018-02-10T18:59:24+01:00', sourceType: 'page',
-            sourceURL: '331514527167'
+            sourceURL: '331514527168'
         }
     ];
+
+    dummyTypes = {
+        "sourceTypes": [
+            "page",
+            "group",
+            "user"
+        ],
+        "eventDefaultTypes": [
+            "movie",
+            "concert",
+            "unspecified"
+        ]
+    };
 
 }

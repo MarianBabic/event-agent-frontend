@@ -17,10 +17,6 @@
     padding-right: 30px;
     cursor: pointer;
 }
-.event {
-    display: flex;
-    text-align: left;
-}
 .event-row {
     overflow: hidden;
     text-overflow: ellipsis;
