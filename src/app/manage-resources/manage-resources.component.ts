@@ -40,14 +40,19 @@ export class ManageResourcesComponent implements OnInit {
     }
 
     updateFrequency(source, newFrequency): void {
-        this.restService.updateSourceFrequency(source.sourceURL, newFrequency).subscribe();
-        this.sharedDataService.confirmationMessage = `You have updated frequency of event source '${source.sourceURL}' to ${newFrequency} hour(s).`;
+        this.restService.updateSourceFrequency(source.sourceURL, newFrequency).subscribe(response => {
+            for (let i = 0; i < this.sources.length; i++) {
+                if (this.sources[i].id === response.id)
+                    this.sources[i] = response;
+            };
+        });
+        this.sharedDataService.confirmationMessage = `You have changed frequency of event source '${source.sourceURL}' to ${newFrequency} hour(s).`;
     }
 
     deleteSource(source): void {
         this.restService.deleteSource(source.sourceURL).subscribe();
         for (let i = this.sources.length - 1; i >= 0; i--) {
-            if (this.sources[i].sourceURL === source.sourceURL)
+            if (this.sources[i].id === source.id)
                 this.sources.splice(i, 1);
         }
         this.sharedDataService.confirmationMessage = `You have deleted event source: '${source.sourceURL}'`;

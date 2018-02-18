@@ -14,7 +14,7 @@
 
     <div class="col-xs-12" *ngIf="sources && sources.length; else noSources">
         <div class="col-xs-12 col-sm-6 m-v" *ngFor="let source of sources">
-            <div class="btn btn-primary event">
+            <div class="btn btn-primary event defaultCursor">
                 <div>
                     <div class="col-xs-12">
                         <div class="col-xs-6">Source URL:</div>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-xs-12">
                         <div class="col-xs-6">Added:</div>
-                        <div class="col-xs-6">{{ source.added | date:'dd. MM. yyyy HH:mm' }}</div>
+                        <div class="col-xs-6">{{ source.added | date:'dd. MM. yyyy HH:mm:ss' }}</div>
                     </div>
                     <div class="col-xs-12">
                         <div class="col-xs-6">Last Check Result:</div>
@@ -48,11 +48,11 @@
                     </div>
                     <div class="col-xs-12">
                         <div class="col-xs-6">Last Check Time:</div>
-                        <div class="col-xs-6">{{ source.lastCheckTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                        <div class="col-xs-6">{{ source.lastCheckTime | date:'dd. MM. yyyy HH:mm:ss' }}</div>
                     </div>
                     <div class="col-xs-12">
                         <div class="col-xs-6">Next Check Time:</div>
-                        <div class="col-xs-6">{{ source.nextCheckTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                        <div class="col-xs-6">{{ source.nextCheckTime | date:'dd. MM. yyyy HH:mm:ss' }}</div>
                     </div>
                     <div class="col-xs-12">
                         <button class="btn btn-danger" (click)="deleteSource(source)">Delete this source</button>
