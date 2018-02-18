@@ -10,15 +10,43 @@ export class RestService {
     constructor(private http: HttpClient) { }
 
     /*
+        EVENTS
+    */
+
+    getEvents(latitude, longitude, radius, startDate): Observable<any> {
+        return this.http.get(`${this.host}/filter/${latitude}/${longitude}/${radius}/${startDate}`);
+    }
+
+    hintAsEqual(userId, event1Id, event2Id): Observable<any> {
+        return this.http.get(`${this.host}/hintAsEqual/${userId}/${event1Id}/${event2Id}`);
+    }
+
+    hintAsSubevent(userId, parentId, childId): Observable<any> {
+        return this.http.get(`${this.host}/hintAsSubevent/${userId}/${parentId}/${childId}`);
+    }
+
+    getUnsolvedSimilarities(): Observable<any> {
+        return this.http.get(`${this.host}/unsolvedSimilarities`);
+    }
+
+    resolveAsEqual(newEvent, event1Id, event2Id): Observable<any> {
+        return this.http.post(`${this.host}/resolvedSimilarities/${event1Id}/${event2Id}`, newEvent);
+    }
+
+    resolveAsSubevents(parentId, childId): Observable<any> {
+        return this.http.get(`${this.host}/resolvedSimilarities/${parentId}/${childId}`);
+    }
+
+    /*
         ADMIN
     */
 
-    addNewAdmin(body): Observable<any> {
-        return this.http.post(`${this.host}/admin`, body);
+    addNewAdmin(newAdmin): Observable<any> {
+        return this.http.post(`${this.host}/admin`, newAdmin);
     }
 
-    isAdmin(id): Observable<any> {
-        return this.http.get(`${this.host}/admin/${id}`);
+    isAdmin(userId): Observable<any> {
+        return this.http.get(`${this.host}/admin/${userId}`);
     }
 
     /*
@@ -29,8 +57,8 @@ export class RestService {
         return this.http.post(`${this.host}/eventsource`, body);
     }
 
-    updateSourceFrequency(source, frequency): Observable<any> {
-        return this.http.put(`${this.host}/eventsource/${source}/${frequency}`, {});
+    updateSourceFrequency(source, newFrequency): Observable<any> {
+        return this.http.put(`${this.host}/eventsource/${source}/${newFrequency}`, {});
     }
 
     getSources(): Observable<any> {
