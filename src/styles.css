@@ -11,9 +11,8 @@ body {
     margin-bottom: 10px;
 }
 
-.header {
+.w-full {
     width: 100%;
-    cursor: default;
 }
 
 .defaultCursor {
@@ -22,6 +21,11 @@ body {
 
 .pointer {
     cursor: pointer;
+}
+
+.header {
+    width: 100%;
+    cursor: default;
 }
 
 .event {
