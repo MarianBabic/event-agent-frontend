@@ -18,13 +18,12 @@ export class ViewEventsComponent implements OnInit {
     filter = {
         latitude: null,
         longitude: null,
-        range: 10,
+        range: 1000, // TODO: 10
         fromDate: new Date().toISOString() // TODO: timezone offset
     };
     filteredEventsCount: number;
     isCheckingActive: boolean = false;
     checkedEvents: Set<number> = new Set();
-    checkedCheckbox: boolean = false;
     googleMapsSettings: any = {
         // inputString: this.filter.latitude + ', ' + this.filter.longitude,
     }
@@ -58,6 +57,9 @@ export class ViewEventsComponent implements OnInit {
         this.restService.getEvents(this.filter.latitude, this.filter.longitude, this.filter.range, this.filter.fromDate).subscribe(
             data => {
                 this.events = data;
+                this.events.forEach(event => {
+                    event.$$filtered = true;
+                });
                 this.filteredEventsCount = this.events.length;
                 console.log(data);
             },
@@ -72,35 +74,46 @@ export class ViewEventsComponent implements OnInit {
         eventDetailModal.style.display = 'block';
     }
 
+    isSearchButtonActive(): boolean {
+        return this.filter.latitude && this.filter.longitude && this.filter.range && this.filter.fromDate.length > 0;
+    }
+
     searchEvents(): void {
         console.log(this.filter);
         this.events = [];
         this.getEvents();
     }
 
-    // TODO
     filterEvents(text: string): void {
-        // text = text.toUpperCase();
-        // this.events = this.dummyDataService.dummyEvents;
-        // if (text.length !== 0) {
-        //     this.events = this.events.filter(event =>
-        //         event.name.toUpperCase().includes(text)
-        //         || event.description.toUpperCase().includes(text)
-        //         || event.place.name.toUpperCase().includes(text)
-        //     );
-        // }
+        text = text.toUpperCase();
+        if (text.length !== 0) {
+            this.filteredEventsCount = 0;
+            this.events.forEach(event => {
+                if (
+                    (event.name && event.name.toUpperCase().includes(text))
+                    || (event.eventType && event.eventType.toUpperCase().includes(text))
+                    || (event.description && event.description.toUpperCase().includes(text))
+                    || (event.place.name && event.place.name.toUpperCase().includes(text))) {
+                    event.$$filtered = true;
+                    this.filteredEventsCount++;
+                } else {
+                    event.$$filtered = false;
+                };
+            })
+        }
     }
 
-    // TODO
-    showCheckedEvents(): void {
-        // this.checkedCheckbox = !this.checkedCheckbox;
-        // if (this.checkedCheckbox) {
-        //     this.events = this.events.filter(
-        //         event => this.checkedEvents.has(event.id)
-        //     );
-        // } else {
-        //     this.events = this.dummyDataService.dummyEvents;
-        // }
+    orderByCheckedEvents(): void {
+        const checkedEvents = this.checkedEvents;
+        this.events.sort(function (a, b) {
+            if (checkedEvents.has(a.id) && !checkedEvents.has(b.id)) {
+                return -1;
+            }
+            if (!checkedEvents.has(a.id) && checkedEvents.has(b.id)) {
+                return 1;
+            }
+            return 0;
+        });
     }
 
     // TODO

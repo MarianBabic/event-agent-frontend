@@ -18,30 +18,28 @@
                 <div class="col-xs-12 m-t">
                     <!-- RANGE -->
                     <div class="col-xs-3">Range (km):</div>
-                    <input class="col-xs-2" type="number" min="0" step="1" [(ngModel)]="filter.range" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
+                    <input class="col-xs-2" type="number" min="0" step="1" [(ngModel)]="filter.range" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                    />
                     <!-- SEARCH BUTTON -->
-                    <button class="col-xs-offset-3 btn btn-success" (click)="searchEvents()">Search events</button>
+                    <button class="col-xs-offset-3 btn btn-success" (click)="searchEvents()" [disabled]="!isSearchButtonActive()">Search events</button>
                 </div>
             </div>
         </div>
-        <!-- TODO -->
         <div class="filter m-v">
             <div class="col-xs-8">
                 <div class="col-xs-4">{{ filteredEventsCount }} of {{ events.length }} events</div>
                 <input #textbox class="col-xs-8" type="text" placeholder="Filter events by name/place/description..." (keyup)="filterEvents(textbox.value)"
-                    [disabled]="events.length === 0" />
+                />
             </div>
             <div class="switcher" (click)="isCheckingActive = !isCheckingActive">
                 <span>Mark related events</span>
                 <span class="glyphicon" [ngClass]="isCheckingActive ? 'glyphicon-chevron-up' : 'glyphicon-chevron-down'"></span>
             </div>
         </div>
-        <!-- TODO -->
         <div class="col-xs-12 m-v b-t" [hidden]="!isCheckingActive">
             <div class="col-xs-4 col-sm-3">{{ checkedEvents.size }} checked events</div>
             <div class="col-xs-4 col-sm-3">
-                <input class="checkbox-inline m-r" type="checkbox" [value]="checkedCheckbox" (change)="showCheckedEvents()" />
-                <span>Show checked only</span>
+                <button class="btn btn-default" (click)="orderByCheckedEvents()">Bring checked events to top</button>
             </div>
             <div class="col-xs-4 col-sm-3">
                 <button class="btn btn-success" [disabled]="checkedEvents.size !== 2" (click)="submitCheckedEvents()">Submit</button>
@@ -52,18 +50,22 @@
     <!-- EVENTS -->
     <div *ngIf="events && events.length; else noEvents">
         <div class="col-xs-12 col-sm-6 m-v" *ngFor="let event of events">
-            <div class="btn btn-primary event" (click)="openEventDetailModal(event)">
-                <div style="overflow: hidden;">
-                    <div style="display: flex;">
-                        <input #checkbox class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)"
-                            (click)="$event.stopPropagation()" [disabled]="checkedEvents.size === 2 && !checkbox.checked" />
-                        <div class="event-row" [innerHTML]="event.name | highlight: textbox.value"></div>
+            <div *ngIf="event.$$filtered">
+                <div class="btn btn-primary event" (click)="openEventDetailModal(event)">
+                    <div style="overflow: hidden;">
+                        <div style="display: flex;">
+                            <input #checkbox class="checkbox-inline m-r" type="checkbox" *ngIf="isCheckingActive" (change)="toggleCheckedEvent(event.id)"
+                                (click)="$event.stopPropagation()" [disabled]="checkedEvents.size === 2 && !checkbox.checked"
+                            />
+                            <div class="event-row" [innerHTML]="event.name | highlight: textbox.value"></div>
+                        </div>
+                        <div class="event-row" [innerHTML]="event.eventType | highlight: textbox.value"></div>
+                        <div class="event-row" [innerHTML]="event.place.name + ', ' + event.place.location.city | highlight: textbox.value"></div>
+                        <div class="event-row">{{ event.startTime | date:'dd. MM. yyyy HH:mm' }} - {{ event.endTime | date:'dd. MM. yyyy HH:mm'
+                            }}
+                        </div>
+                        <div class="event-row" [innerHTML]="event.description | highlight: textbox.value"></div>
                     </div>
-                    <div class="event-row" [innerHTML]="event.eventType | highlight: textbox.value"></div>
-                    <!-- TODO: highlight city -->
-                    <div class="event-row" [innerHTML]="event.place.name + ', ' + event.place.location.city | highlight: textbox.value"></div>
-                    <div class="event-row">{{ event.startTime | date:'dd. MM. yyyy HH:mm' }} - {{ event.endTime | date:'dd. MM. yyyy HH:mm' }}</div>
-                    <div class="event-row" [innerHTML]="event.description | highlight: textbox.value"></div>
                 </div>
             </div>
         </div>
