@@ -31,14 +31,24 @@ export class PairComponent implements OnInit {
         // this.restService.resolveAsEqual(newEvent, this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe();
         this.deletePair();
         // TODO: scroll to the top so message is visible
-        this.sharedDataService.confirmationMessage = `You have merged the pair of events: '${this.pair['id']}'`;
+        this.sharedDataService.confirmationMessage = {
+            message: `You have merged the pair of events: '${this.pair['id']}'`,
+            error: false
+        };
     }
 
-    markAsSubevent(subEvent: number): void {
+    resolveAsSubevents(subEvent: number): void {
         const parentId = (subEvent === 1) ? this.pair['eventTwo'].id : this.pair['eventOne'].id;
         const childId = (subEvent === 1) ? this.pair['eventOne'].id : this.pair['eventTwo'].id;
-        this.restService.hintAsSubevent(this.sharedDataService.userId, parentId, childId).subscribe();
-        this.sharedDataService.confirmationMessage = `You have marked the event '${childId}' to be subevent of event '${parentId}'`;
+        this.restService.resolveAsSubevents(parentId, childId).subscribe(
+            result => this.sharedDataService.confirmationMessage = { message: `You have marked the event '${childId}' to be subevent of event '${parentId}'`, error: false },
+            error => {
+                this.sharedDataService.confirmationMessage = {
+                    message: `Your request to mark the event '${childId}' to be subevent of event '${parentId}' was not finished successfully. You were to make 3 levels of subevents (parent - child - grandchild)`,
+                    error: true
+                };
+            }
+        );
     }
 
     onDelete(): void {
@@ -47,7 +57,10 @@ export class PairComponent implements OnInit {
         // to delete the pair locally from the browser
         this.deletePair();
         // TODO: scroll to the top so message is visible
-        this.sharedDataService.confirmationMessage = `You have marked the pair of events: '${this.pair['id']}' as unrelated`;
+        this.sharedDataService.confirmationMessage = {
+            message: `You have marked the pair of events: '${this.pair['id']}' as unrelated`,
+            error: false
+        };
     }
 
     private deletePair(): void {

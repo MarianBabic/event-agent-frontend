@@ -35,7 +35,10 @@ export class ManageResourcesComponent implements OnInit {
     addNewAdmin(): void {
         const body = { adminFbId: this.newAdmin };
         this.restService.addNewAdmin(body).subscribe();
-        this.sharedDataService.confirmationMessage = `You have added new admin with user id: '${this.newAdmin}'`;
+        this.sharedDataService.confirmationMessage = {
+            message: `You have added new admin with user id: '${this.newAdmin}'`,
+            error: false
+        };
         this.newAdmin = null;
     }
 
@@ -46,7 +49,10 @@ export class ManageResourcesComponent implements OnInit {
                     this.sources[i] = response;
             };
         });
-        this.sharedDataService.confirmationMessage = `You have changed frequency of event source '${source.sourceURL}' to ${newFrequency} hour(s).`;
+        this.sharedDataService.confirmationMessage = {
+            message: `You have changed frequency of event source '${source.sourceURL}' to ${newFrequency} hour(s).`,
+            error: false
+        };
     }
 
     deleteSource(source): void {
@@ -55,12 +61,18 @@ export class ManageResourcesComponent implements OnInit {
             if (this.sources[i].id === source.id)
                 this.sources.splice(i, 1);
         }
-        this.sharedDataService.confirmationMessage = `You have deleted event source: '${source.sourceURL}'`;
+        this.sharedDataService.confirmationMessage = {
+            message: `You have deleted event source: '${source.sourceURL}'`,
+            error: false
+        };
     }
 
     addSource(): void {
         this.restService.addSource(this.newSource).subscribe(newSource => this.sources.push(newSource));
-        this.sharedDataService.confirmationMessage = `You have added new event source: '${this.newSource.source}'`;
+        this.sharedDataService.confirmationMessage = {
+            message: `You have added new event source: '${this.newSource.source}'`,
+            error: false
+        };
         this.newSource = {
             defaultType: null,
             frequency: null,

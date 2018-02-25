@@ -20,6 +20,7 @@ import { SubmitModalComponent } from './modals/submit-modal/submit-modal.compone
 
 // pipes
 import { HighlightPipe } from './pipes/highlight.pipe';
+import { SafePipe } from './pipes/safe.pipe';
 
 // services
 import { DummyDataService } from './services/dummy-data.service';
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
         ViewEventsComponent,
         EventDetailModalComponent,
         SubmitModalComponent,
-        HighlightPipe
+        HighlightPipe,
+        SafePipe
     ],
     imports: [
         BrowserModule,

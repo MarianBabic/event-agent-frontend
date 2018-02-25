@@ -296,9 +296,9 @@
         <!-- TODO: disabled && required fields -->
         <!-- TODO: [disabled]="!form || !isFormValid()" -->
         <button class="btn btn-success" (click)="onSubmit()">Submit merging</button>
-        <button class="btn btn-success" (click)="markAsSubevent(1)">First is subevent</button>
-        <button class="btn btn-success" (click)="markAsSubevent(2)">Second is subevent</button>
-        <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+        <button class="btn btn-success" (click)="resolveAsSubevents(1)">First is subevent</button>
+        <button class="btn btn-success" (click)="resolveAsSubevents(2)">Second is subevent</button>
+        <button class="btn btn-danger" (click)="onDelete()">Resolve as unrelated</button>
     </div>
 
 </div>

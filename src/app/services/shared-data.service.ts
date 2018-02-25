@@ -7,7 +7,11 @@ export class SharedDataService {
     isAdmin: boolean = true;
     userId: number = 1; // TODO
 
-    confirmationMessage: string = '';
+    confirmationMessage = {
+        message: '',
+        error: false // confirmation banner gets red colour if true
+    }
+
     submitModal: any = {
         modal: HTMLElement,
         events: <any>[]
@@ -18,15 +22,15 @@ export class SharedDataService {
     /* CONFIRMATION MESSAGES */
 
     isConfirmationMessageShown(): boolean {
-        return this.confirmationMessage.length !== 0;
+        return this.confirmationMessage.message.length !== 0;
     }
 
     closeConfirmationMessage(): void {
-        this.confirmationMessage = '';
+        this.confirmationMessage.message = '';
     }
 
     showConfirmationMessage(message: string): void {
-        this.confirmationMessage = message;
+        this.confirmationMessage.message = message;
     }
 
     /* SUBMIT MODAL */

@@ -17,8 +17,14 @@
     font-size: 14px;
     min-height: 30px;
     color: #fff;
+}
+.conf-message-bckgrnd {
     background: #f0ad4e;
 }
+.conf-message-bckgrnd-err {
+    background: red;
+}
+
 /* override bootstrap's close class */
 .close {
     text-align: right;
