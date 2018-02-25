@@ -35,10 +35,9 @@ export class PairComponent implements OnInit {
     }
 
     markAsSubevent(subEvent: number): void {
-        let userId = 1; // TODO
         const parentId = (subEvent === 1) ? this.pair['eventTwo'].id : this.pair['eventOne'].id;
         const childId = (subEvent === 1) ? this.pair['eventOne'].id : this.pair['eventTwo'].id;
-        this.restService.hintAsSubevent(userId, parentId, childId).subscribe();
+        this.restService.hintAsSubevent(this.sharedDataService.userId, parentId, childId).subscribe();
         this.sharedDataService.confirmationMessage = `You have marked the event '${childId}' to be subevent of event '${parentId}'`;
     }
 

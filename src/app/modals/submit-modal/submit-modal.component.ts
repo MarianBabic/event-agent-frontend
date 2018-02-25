@@ -58,19 +58,18 @@ export class SubmitModalComponent implements OnInit {
 
     onSubmit(): void {
         this.sharedDataService.closeSubmitModal();
-        let userId = 1; // TODO
         // TODO: zobrazit mena eventov namiesto ich id
         if (this.isHintTypeIdentical) {
             const idsIiterator = this.sharedDataService.submitModal.events.values();
             this.event1 = idsIiterator.next().value;
             this.event2 = idsIiterator.next().value;
             this.sharedDataService.confirmationMessage = `You have hinted 2 events as identical: 'id1: ${this.event1}' & 'id2: ${this.event2}'`;
-            this.restService.hintAsEqual(userId, this.event1, this.event2).subscribe();
+            this.restService.hintAsEqual(this.sharedDataService.userId, this.event1, this.event2).subscribe();
         } else {
             const parentId = this.checkboxes.parent1 ? this.event1 : this.event2;
             const childId = this.checkboxes.child1 ? this.event1 : this.event2;
             this.sharedDataService.confirmationMessage = `You have hinted that the event 'id1: ${parentId}' is parent of the event 'id2: ${childId}'`;
-            this.restService.hintAsSubevent(userId, parentId, childId).subscribe();
+            this.restService.hintAsSubevent(this.sharedDataService.userId, parentId, childId).subscribe();
         }
     }
 

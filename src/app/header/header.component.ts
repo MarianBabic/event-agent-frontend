@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
         // 2nd option: get id as parameter and exchange me <=> `/${id}`
         FB.api('me/', (response) => {
             if (response && !response.error) {
-                this.userId = response.id;
+                this.userId = this.sharedDataService.userId = response.id;
                 this.userName = response.name;
             }
         });

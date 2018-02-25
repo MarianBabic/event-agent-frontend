@@ -5,6 +5,7 @@ export class SharedDataService {
 
     // TODO: change to false
     isAdmin: boolean = true;
+    userId: number = 1; // TODO
 
     confirmationMessage: string = '';
     submitModal: any = {
