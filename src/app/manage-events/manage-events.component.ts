@@ -24,13 +24,8 @@ export class ManageEventsComponent implements OnInit {
         this.restService.getUnsolvedSimilarities().subscribe(
             data => {
                 console.log(data);
-                // this.similarEvents = data.slice(0, 10); // TODO: = data
-                let arr = [];
-                data.forEach(element => {
-                    if (element.equalitySuggestions.length > 1 || element.firstIsSubeventSuggestions.length > 1 || element.secondIsSubeventSuggestions.length > 1)
-                        arr.push(element);
-                });
-                this.similarEvents = arr;
+                this.similarEvents = data;
+                // this.similarEvents = data.slice(0, 100); // TODO: = data
                 this.similarEventsCount = this.similarEvents.length;
             },
             err => {
