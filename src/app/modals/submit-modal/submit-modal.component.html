@@ -13,6 +13,7 @@
 
         <div class="modal-body">
             <div *ngIf="isHintTypeIdentical; else nestedEvents">
+                <!-- TODO: use names or use ids in view events -->
                 Events IDs:
                 <div *ngFor="let event of sharedDataService.submitModal.events">
                     {{ event }}
@@ -20,22 +21,23 @@
             </div>
             <ng-template #nestedEvents>
                 <span>Choose which one is the parent event and which one is the child one:</span>
-                <!-- <div *ngFor="let event of sharedDataService.submitModal.events"> -->
                 <div>
-                    <!-- TODO: checked and disabled conditions -->
-                    <input #checkboxParent1 class="checkbox-inline m-r" type="checkbox" [checked]="false" [disabled]="false" />
+                    <input class="checkbox-inline m-r" type="checkbox" [(ngModel)]="checkboxes.parent1" (ngModelChange)="toggleCheckboxes('parent1')"
+                    />
                     <label class="form-check-label m-r-extra">Parent</label>
-                    <input #checkboxChild1 class="checkbox-inline m-r" type="checkbox" [checked]="checkboxParent2.value" [disabled]="false" />
+                    <input class="checkbox-inline m-r" type="checkbox" [(ngModel)]="checkboxes.child1" (ngModelChange)="toggleCheckboxes('child1')"
+                    />
                     <label class="form-check-label m-r-extra">Child</label>
-                    {{ sharedDataService.submitModal.events[0] }}
+                    {{ event1 }}
                 </div>
                 <div>
-                    <!-- TODO: checked and disabled conditions -->
-                    <input #checkboxParent2 class="checkbox-inline m-r" type="checkbox" [checked]="!checkboxParent1.value" [disabled]="false" />
+                    <input class="checkbox-inline m-r" type="checkbox" [(ngModel)]="checkboxes.parent2" (ngModelChange)="toggleCheckboxes('parent2')"
+                    />
                     <label class="form-check-label m-r-extra">Parent</label>
-                    <input #checkboxChild2 class="checkbox-inline m-r" type="checkbox" [checked]="checkboxParent1.value" [disabled]="false" />
+                    <input class="checkbox-inline m-r" type="checkbox" [(ngModel)]="checkboxes.child2" (ngModelChange)="toggleCheckboxes('child2')"
+                    />
                     <label class="form-check-label m-r-extra">Child</label>
-                    {{ sharedDataService.submitModal.events[0] }}
+                    {{ event2 }}
                 </div>
             </ng-template>
         </div>
@@ -43,7 +45,7 @@
         <div class="modal-footer">
             <div class="btn-group">
                 <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
-                <button class="btn btn-success" (click)="onSubmit()">Submit</button>
+                <button class="btn btn-success" (click)="onSubmit()" [disabled]="isSubmitDisabled()">Submit</button>
             </div>
         </div>
 

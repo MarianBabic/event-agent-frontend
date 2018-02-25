@@ -37,6 +37,11 @@ export class RestService {
         return this.http.get(`${this.host}/resolvedSimilarities/${parentId}/${childId}`);
     }
 
+    resolveAsUnrelated(event1Id, event2Id): Observable<any> {
+        // TODO: null?
+        return this.http.put(`${this.host}/resolvedSimilarities/${event1Id}/${event2Id}`, null);
+    }
+
     /*
         ADMIN
     */

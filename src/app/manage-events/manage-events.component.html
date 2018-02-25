@@ -1,21 +1,11 @@
 <div class="col-xs-12">
 
-    <!-- SIMILAR EVENTS -->
-    <h3 class="btn btn-primary header m-v">Merge the two similar events into the (new) one:</h3>
-    <div *ngIf="similarEvents[0].length; else noEvents">
-        <div *ngFor="let pair of similarEvents[0]; index as i">
-            <app-pair [pair]="pair" [isLast]="i === similarEvents[0].length - 1" [hasForm]="true"></app-pair>
+    <div *ngIf="similarEvents && similarEvents.length; else noEvents">
+        <div *ngFor="let pair of similarEvents; index as i">
+            <app-pair [pair]="pair" [isLast]="i === similarEvents.length - 1"></app-pair>
         </div>
     </div>
 
-    <!-- SUB EVENTS -->
-    <h3 class="btn btn-primary header m-v">Make the first event the parent and the second event its child:</h3>
-    <div *ngIf="similarEvents[1].length; else noEvents">
-        <div *ngFor="let pair of similarEvents[1]; index as i">
-            <app-pair [pair]="pair" [isLast]="i === similarEvents[0].length - 1" [hasForm]="false"></app-pair>
-        </div>
-    </div>
-
-    <ng-template #noEvents>There are no events to be processed...</ng-template>
+    <ng-template #noEvents>There are no events to be managed...</ng-template>
 
 </div>

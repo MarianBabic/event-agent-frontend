@@ -51,7 +51,11 @@ export class ViewEventsComponent implements OnInit {
 
     }
 
-    private getEvents() {
+    getEvents() {
+        this.events = [];
+        this.checkedEvents.clear();
+        this.sharedDataService.submitModal.events = [];
+
         if (this.filter.fromDate.length > 19)
             this.filter.fromDate = this.filter.fromDate.substring(0, this.filter.fromDate.length - 5);
         this.restService.getEvents(this.filter.latitude, this.filter.longitude, this.filter.range, this.filter.fromDate).subscribe(
@@ -76,12 +80,6 @@ export class ViewEventsComponent implements OnInit {
 
     isSearchButtonActive(): boolean {
         return this.filter.latitude && this.filter.longitude && this.filter.range && this.filter.fromDate.length > 0;
-    }
-
-    searchEvents(): void {
-        console.log(this.filter);
-        this.events = [];
-        this.getEvents();
     }
 
     filterEvents(text: string): void {

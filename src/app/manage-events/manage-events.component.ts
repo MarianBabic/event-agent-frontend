@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DummyDataService } from '../services/dummy-data.service';
 import { RestService } from '../services/rest.service';
 
 @Component({
@@ -12,13 +11,13 @@ export class ManageEventsComponent implements OnInit {
 
     similarEvents: any[];
 
-    constructor(private dummyDataService: DummyDataService, private restService: RestService) { }
+    constructor(private restService: RestService) { }
 
     ngOnInit() {
-        this.similarEvents = this.dummyDataService.dummySimilarEvents;
         this.restService.getUnsolvedSimilarities().subscribe(
             data => {
                 console.log(data);
+                this.similarEvents = data.slice(0, 10); // TODO: = data
             },
             err => {
                 alert('An error encountered while loading data from server! Please try again.');

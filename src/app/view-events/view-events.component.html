@@ -21,7 +21,7 @@
                     <input class="col-xs-2" type="number" min="0" step="1" [(ngModel)]="filter.range" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                     />
                     <!-- SEARCH BUTTON -->
-                    <button class="col-xs-offset-3 btn btn-success" (click)="searchEvents()" [disabled]="!isSearchButtonActive()">Search events</button>
+                    <button class="col-xs-offset-3 btn btn-success" (click)="getEvents()" [disabled]="!isSearchButtonActive()">Search events</button>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 <button class="btn btn-default" (click)="orderByCheckedEvents()">Bring checked events to top</button>
             </div>
             <div class="col-xs-4 col-sm-3">
-                <button class="btn btn-success" [disabled]="checkedEvents.size !== 2" (click)="submitCheckedEvents()">Submit</button>
+                <button class="btn btn-success" [disabled]="checkedEvents.size !== 2" (click)="submitCheckedEvents()">Mark events as related</button>
             </div>
         </div>
     </div>
