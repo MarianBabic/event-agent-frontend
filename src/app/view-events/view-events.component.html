@@ -67,12 +67,12 @@
                         <div class="event-row" [innerHTML]="event.description | highlight: textbox.value"></div>
                         <div *ngIf="event.subEvents">
                             <div *ngFor="let subEvent of event.subEvents">
-                                <div class="m-v" style="background: green;" (click)="openEventDetailModal(subEvent); $event.stopPropagation()">
-                                    <div>{{ subEvent.name }}</div>
-                                    <div>{{ subEvent.eventType }}</div>
-                                    <div>{{ subEvent.place.name }}</div>
-                                    <div>{{ subEvent.startTime | date:'dd. MM. yyyy HH:mm' }}</div>
-                                    <div>{{ subEvent.description }}</div>
+                                <div class="col-xs-12 m-v" style="background: #769C2B;" (click)="openEventDetailModal(subEvent); $event.stopPropagation()">
+                                    <div class="event-row">{{ subEvent.name }}</div>
+                                    <div class="event-row">{{ subEvent.eventType }}</div>
+                                    <div class="event-row">{{ subEvent.place.name }}</div>
+                                    <div class="event-row">{{ subEvent.startTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                                    <div class="event-row">{{ subEvent.description }}</div>
                                 </div>
                             </div>
                         </div>

@@ -10,6 +10,10 @@
         <div class="modal-body" *ngIf="event">
             <div class="col-xs-12">
                 <div class="row">
+                    <div class="col-xs-3">ID: </div>
+                    <div class="col-xs-9">{{ event.id }}</div>
+                </div>
+                <div class="row">
                     <div class="col-xs-3">name:</div>
                     <div class="col-xs-9" [innerHTML]="event.name | highlight: filter"></div>
                 </div>
@@ -38,11 +42,11 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-3">url:</div>
-                    <div class="col-xs-9">{{ event.url }}</div>
+                    <div class="col-xs-9 break-word">{{ event.url }}</div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3">event source url:</div>
-                    <div class="col-xs-9">{{ event.eventSourceUrl }}</div>
+                    <div class="col-xs-9 break-word">{{ event.eventSourceUrl }}</div>
                 </div>
             </div>
         </div>
