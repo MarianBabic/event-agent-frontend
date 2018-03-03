@@ -38,3 +38,12 @@ Typescript 2.6.2
 bootstrap 3.3.7  
 ng4-geoautocomplete (Google place autocomplete) 0.1.0  
 Facebook Graph API 2.12
+
+To use Google API:
+- login to developers.google.com and get an api key
+- insert key into index.html (line 15)
+
+To use Facebook API:
+- create new app on developers.facebook.com and get app id
+- insert app id into header.component.ts (line 20)
+- to user facebook login, enter app urls as 'Valid OAuth redirect URIs' - 'https://localhost/', 'http://udalosti.kapsa.sk:8080/'
