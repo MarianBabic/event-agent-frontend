@@ -12,8 +12,8 @@
                 <!-- FROM DATE -->
                 <div class="col-xs-12 m-t">
                     <div class="col-xs-12 col-md-3">From:</div>
-                    <input class="col-xs-11 col-xs-offset-1 col-md-9" type="datetime-local" [ngModel]="filter.fromDate | date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="filter.fromDate = $event"
-                    />
+                    <input class="col-xs-11 col-xs-offset-1 col-md-9" type="datetime-local" [ngModel]="filter.fromDate | date:'yyyy-MM-ddTHH:mm'"
+                        (ngModelChange)="filter.fromDate = $event" />
                 </div>
                 <div class="col-xs-12 m-t">
                     <!-- RANGE -->
@@ -65,6 +65,17 @@
                             }}
                         </div>
                         <div class="event-row" [innerHTML]="event.description | highlight: textbox.value"></div>
+                        <div *ngIf="event.subEvents">
+                            <div *ngFor="let subEvent of event.subEvents">
+                                <div class="m-v" style="background: green;" (click)="openEventDetailModal(subEvent); $event.stopPropagation()">
+                                    <div>{{ subEvent.name }}</div>
+                                    <div>{{ subEvent.eventType }}</div>
+                                    <div>{{ subEvent.place.name }}</div>
+                                    <div>{{ subEvent.startTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                                    <div>{{ subEvent.description }}</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
