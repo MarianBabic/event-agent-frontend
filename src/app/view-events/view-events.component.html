@@ -11,24 +11,24 @@
             <div class="col-xs-12 col-sm-6">
                 <!-- FROM DATE -->
                 <div class="col-xs-12 m-t">
-                    <div class="col-xs-3">From:</div>
-                    <input class="col-xs-9" type="datetime-local" [ngModel]="filter.fromDate | date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="filter.fromDate = $event"
+                    <div class="col-xs-12 col-md-3">From:</div>
+                    <input class="col-xs-11 col-xs-offset-1 col-md-9" type="datetime-local" [ngModel]="filter.fromDate | date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="filter.fromDate = $event"
                     />
                 </div>
                 <div class="col-xs-12 m-t">
                     <!-- RANGE -->
-                    <div class="col-xs-3">Range (km):</div>
-                    <input class="col-xs-2" type="number" min="0" step="1" [(ngModel)]="filter.range" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                    <div class="col-xs-12 col-md-3">Range (km):</div>
+                    <input class="col-xs-11 col-xs-offset-1 col-md-2" type="number" min="0" step="1" [(ngModel)]="filter.range" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
                     />
                     <!-- SEARCH BUTTON -->
-                    <button class="col-xs-offset-3 btn btn-success" (click)="getEvents()" [disabled]="!isSearchButtonActive()">Search events</button>
+                    <button class="col-xs-offset-3 btn btn-success m-v" (click)="getEvents()" [disabled]="!isSearchButtonActive()">Search events</button>
                 </div>
             </div>
         </div>
         <div class="filter m-v">
-            <div class="col-xs-8">
-                <div class="col-xs-4">{{ filteredEventsCount }} of {{ events.length }} events</div>
-                <input #textbox class="col-xs-8" type="text" placeholder="Filter events by name/place/description..." (keyup)="filterEvents(textbox.value)"
+            <div class="col-xs-12 col-md-8">
+                <div class="col-xs-12 col-md-4">{{ filteredEventsCount }} of {{ events.length }} events</div>
+                <input #textbox class="col-xs-12 col-md-8" type="text" placeholder="Filter events by name/place/description..." (keyup)="filterEvents(textbox.value)"
                 />
             </div>
             <div class="switcher" (click)="isCheckingActive = !isCheckingActive">
@@ -37,11 +37,11 @@
             </div>
         </div>
         <div class="col-xs-12 m-v b-t" [hidden]="!isCheckingActive">
-            <div class="col-xs-4 col-sm-3">{{ checkedEvents.size }} checked events</div>
-            <div class="col-xs-4 col-sm-3">
+            <div class="col-xs-12 col-sm-4 m-t">{{ checkedEvents.size }} checked events</div>
+            <div class="col-xs-12 col-sm-4 m-t">
                 <button class="btn btn-default" (click)="orderByCheckedEvents()">Bring checked events to top</button>
             </div>
-            <div class="col-xs-4 col-sm-3">
+            <div class="col-xs-12 col-sm-4 m-t">
                 <button class="btn btn-success" [disabled]="checkedEvents.size !== 2" (click)="submitCheckedEvents()">Mark events as related</button>
             </div>
         </div>
