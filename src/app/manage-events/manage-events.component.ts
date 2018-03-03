@@ -10,10 +10,6 @@ import { SharedDataService } from '../services/shared-data.service';
 })
 export class ManageEventsComponent implements OnInit {
 
-    similarEvents: any[];
-    similarEventsAll: any[];
-    similarEventsCount: number = 0;
-    similarEventsCountAll: number = 0;
     sortOptions = [
         { id: 0, name: 'probability of equality' },
         { id: 1, name: 'number of equality suggestions' },
@@ -26,11 +22,12 @@ export class ManageEventsComponent implements OnInit {
     ngOnInit() {
         this.restService.getUnsolvedSimilarities().subscribe(
             data => {
-                console.log(data);
-                this.similarEvents = data.slice(0, 20);
-                this.similarEventsAll = data;
-                this.similarEventsCount = this.similarEvents.length;
-                this.similarEventsCountAll = data.length;
+                this.sharedDataService.similarEventsAll = data;
+
+                let itemsCount = data.length >= 20 ? 20 : data.length;
+
+                this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, itemsCount);
+                this.sharedDataService.similarEventsAll.splice(0, itemsCount);
             },
             err => this.sharedDataService.confirmationMessage = {
                 message: 'An error encountered while loading data from server! Please try again.',
@@ -43,28 +40,28 @@ export class ManageEventsComponent implements OnInit {
         if (option >= 0)
             switch (option) {
                 case 0:
-                    this.similarEventsAll.sort(function (a, b) {
+                    this.sharedDataService.similarEventsAll.sort(function (a, b) {
                         return b.probabilityOfEquality - a.probabilityOfEquality;
                     });
-                    this.similarEvents = this.similarEventsAll.slice(0, 20);
+                    this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, 20);
                     break;
                 case 1:
-                    this.similarEventsAll.sort(function (a, b) {
+                    this.sharedDataService.similarEventsAll.sort(function (a, b) {
                         return b.equalitySuggestions.length - a.equalitySuggestions.length;
                     });
-                    this.similarEvents = this.similarEventsAll.slice(0, 20);
+                    this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, 20);
                     break;
                 case 2:
-                    this.similarEventsAll.sort(function (a, b) {
+                    this.sharedDataService.similarEventsAll.sort(function (a, b) {
                         return b.firstIsSubeventSuggestions.length - a.firstIsSubeventSuggestions.length;
                     });
-                    this.similarEvents = this.similarEventsAll.slice(0, 20);
+                    this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, 20);
                     break;
                 case 3:
-                    this.similarEventsAll.sort(function (a, b) {
+                    this.sharedDataService.similarEventsAll.sort(function (a, b) {
                         return b.secondIsSubeventSuggestions.length - a.secondIsSubeventSuggestions.length;
                     });
-                    this.similarEvents = this.similarEventsAll.slice(0, 20);
+                    this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, 20);
                     break;
                 case -1: // this is default(empty) option
                 default: // do nothing

@@ -41,7 +41,10 @@ export class PairComponent implements OnInit {
         const parentId = (subEvent === 1) ? this.pair['eventTwo'].id : this.pair['eventOne'].id;
         const childId = (subEvent === 1) ? this.pair['eventOne'].id : this.pair['eventTwo'].id;
         this.restService.resolveAsSubevents(parentId, childId).subscribe(
-            result => this.sharedDataService.confirmationMessage = { message: `You have marked the event '${childId}' to be subevent of event '${parentId}'`, error: false },
+            result => {
+                this.sharedDataService.confirmationMessage = { message: `You have marked the event '${childId}' to be subevent of event '${parentId}'`, error: false };
+                this.deletePair();
+            },
             error => {
                 this.sharedDataService.confirmationMessage = {
                     message: `Your request to mark the event '${childId}' to be subevent of event '${parentId}' was not finished successfully. You were to make 3 levels of subevents (parent - child - grandchild)`,
@@ -53,22 +56,30 @@ export class PairComponent implements OnInit {
 
     onDelete(): void {
         // to delete the pair from the server
-        this.restService.resolveAsUnrelated(this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe();
-        // to delete the pair locally from the browser
-        this.deletePair();
-        // TODO: scroll to the top so message is visible
-        this.sharedDataService.confirmationMessage = {
-            message: `You have marked the pair of events: '${this.pair['id']}' as unrelated`,
-            error: false
-        };
+        this.restService.resolveAsUnrelated(this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe(
+            result => {
+                // TODO: scroll to the top so message is visible
+                this.sharedDataService.confirmationMessage = {
+                    message: `You have marked the pair of events: '${this.pair['id']}' as unrelated`,
+                    error: false
+                };
+                this.deletePair();
+            },
+            error => {
+                this.sharedDataService.confirmationMessage = { message: `Your request to resolve the pair of events was not finished successfully!`, error: true };
+            }
+        );
     }
 
+    // to delete the pair locally from the browser
     private deletePair(): void {
-        // for (let i = this.similarEvents[0].length - 1; i >= 0; i--) {
-        //     if (this.similarEvents[0][i][0].id === this.pair[0].id && this.similarEvents[0][i][1].id === this.pair[1].id) {
-        //         this.similarEvents[0].splice(i, 1);
-        //     }
-        // }
+        for (let i = this.sharedDataService.similarEvents.length - 1; i >= 0; i--) {
+            if (this.sharedDataService.similarEvents[i].id === this.pair['id']) {
+                this.sharedDataService.similarEvents.splice(i, 1);
+                this.sharedDataService.similarEvents.push(this.sharedDataService.similarEventsAll[0]);
+                this.sharedDataService.similarEventsAll.splice(0, 1);
+            }
+        }
     }
 
     // TODO

@@ -1,7 +1,8 @@
 <div class="col-xs-12">
 
     <div class="col-xs-12 m-v">
-        <div class="col-xs-12 col-md-3">{{ similarEventsCount }} of {{ similarEventsCountAll }} pair(s) of events</div>
+        <div class="col-xs-12 col-md-3">{{ sharedDataService.similarEvents.length }} of {{ sharedDataService.similarEvents.length + sharedDataService.similarEventsAll.length
+            }} pair(s) of events</div>
         <div class="col-xs-3">Sort by:</div>
         <div class="col-xs-5">
             <select class="form-control pointer" (change)="sortBy($event.target.selectedIndex - 1)">
@@ -13,9 +14,9 @@
         </div>
     </div>
 
-    <div *ngIf="similarEvents && similarEvents.length; else noEvents">
-        <div *ngFor="let pair of similarEvents; index as i">
-            <app-pair [pair]="pair" [isLast]="i === similarEvents.length - 1"></app-pair>
+    <div *ngIf="sharedDataService.similarEvents && sharedDataService.similarEvents.length; else noEvents">
+        <div *ngFor="let pair of sharedDataService.similarEvents; index as i">
+            <app-pair [pair]="pair" [isLast]="i === sharedDataService.similarEvents.length - 1"></app-pair>
         </div>
     </div>
 

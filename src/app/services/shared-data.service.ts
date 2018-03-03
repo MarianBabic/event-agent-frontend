@@ -17,6 +17,10 @@ export class SharedDataService {
         events: <any>[]
     }
 
+    // for manage events component
+    similarEvents: any[] = [];
+    similarEventsAll: any[] = [];
+
     constructor() { }
 
     /* CONFIRMATION MESSAGES */
