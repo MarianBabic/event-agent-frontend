@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
             // var uid = response.authResponse.userID;
             // var accessToken = response.authResponse.accessToken;
 
+            this.sharedDataService.isAdmin = true;
             this.getUserName();
             // TODO: check if is admin
         } else if (response.status === 'not_authorized') {
