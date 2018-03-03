@@ -18,3 +18,7 @@
 .textarea {
     resize: vertical;
 }
+
+button {
+    white-space: normal;
+}

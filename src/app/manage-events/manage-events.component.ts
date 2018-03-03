@@ -11,6 +11,7 @@ import { SharedDataService } from '../services/shared-data.service';
 export class ManageEventsComponent implements OnInit {
 
     similarEvents: any[];
+    similarEventsAll: any[];
     similarEventsCount: number = 0;
     similarEventsCountAll: number = 0;
     sortOptions = [
@@ -26,8 +27,8 @@ export class ManageEventsComponent implements OnInit {
         this.restService.getUnsolvedSimilarities().subscribe(
             data => {
                 console.log(data);
-                // this.similarEvents = data;
                 this.similarEvents = data.slice(0, 20);
+                this.similarEventsAll = data;
                 this.similarEventsCount = this.similarEvents.length;
                 this.similarEventsCountAll = data.length;
             },
@@ -42,24 +43,28 @@ export class ManageEventsComponent implements OnInit {
         if (option >= 0)
             switch (option) {
                 case 0:
-                    this.similarEvents.sort(function (a, b) {
+                    this.similarEventsAll.sort(function (a, b) {
                         return b.probabilityOfEquality - a.probabilityOfEquality;
                     });
+                    this.similarEvents = this.similarEventsAll.slice(0, 20);
                     break;
                 case 1:
-                    this.similarEvents.sort(function (a, b) {
+                    this.similarEventsAll.sort(function (a, b) {
                         return b.equalitySuggestions.length - a.equalitySuggestions.length;
                     });
+                    this.similarEvents = this.similarEventsAll.slice(0, 20);
                     break;
                 case 2:
-                    this.similarEvents.sort(function (a, b) {
+                    this.similarEventsAll.sort(function (a, b) {
                         return b.firstIsSubeventSuggestions.length - a.firstIsSubeventSuggestions.length;
                     });
+                    this.similarEvents = this.similarEventsAll.slice(0, 20);
                     break;
                 case 3:
-                    this.similarEvents.sort(function (a, b) {
+                    this.similarEventsAll.sort(function (a, b) {
                         return b.secondIsSubeventSuggestions.length - a.secondIsSubeventSuggestions.length;
                     });
+                    this.similarEvents = this.similarEventsAll.slice(0, 20);
                     break;
                 case -1: // this is default(empty) option
                 default: // do nothing
