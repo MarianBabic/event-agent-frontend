@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RestService } from '../services/rest.service';
+import { SharedDataService } from '../services/shared-data.service';
 
 @Component({
     selector: 'app-manage-events',
@@ -11,6 +12,7 @@ export class ManageEventsComponent implements OnInit {
 
     similarEvents: any[];
     similarEventsCount: number = 0;
+    similarEventsCountAll: number = 0;
     sortOptions = [
         { id: 0, name: 'probability of equality' },
         { id: 1, name: 'number of equality suggestions' },
@@ -18,18 +20,20 @@ export class ManageEventsComponent implements OnInit {
         { id: 3, name: 'number of second is subevent suggestions' }
     ];
 
-    constructor(private restService: RestService) { }
+    constructor(private restService: RestService, private sharedDataService: SharedDataService) { }
 
     ngOnInit() {
         this.restService.getUnsolvedSimilarities().subscribe(
             data => {
                 console.log(data);
-                this.similarEvents = data;
-                // this.similarEvents = data.slice(0, 100); // TODO: = data
+                // this.similarEvents = data;
+                this.similarEvents = data.slice(0, 20);
                 this.similarEventsCount = this.similarEvents.length;
+                this.similarEventsCountAll = data.length;
             },
-            err => {
-                alert('An error encountered while loading data from server! Please try again.');
+            err => this.sharedDataService.confirmationMessage = {
+                message: 'An error encountered while loading data from server! Please try again.',
+                error: true
             }
         );
     }
