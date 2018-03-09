@@ -21,7 +21,7 @@ export class ViewEventsComponent implements OnInit {
         range: 1000, // TODO: 10
         fromDate: new Date().toISOString() // TODO: timezone offset
     };
-    filteredEventsCount: number;
+    filteredEventsCount: number = 0;
     isCheckingActive: boolean = false;
     checkedEvents: Set<number> = new Set();
     googleMapsSettings: any = {
@@ -65,7 +65,6 @@ export class ViewEventsComponent implements OnInit {
                     event.$$filtered = true;
                 });
                 this.filteredEventsCount = this.events.length;
-                console.log(data);
             },
             err => {
                 alert('An error encountered while loading data from server! Please try again.');
@@ -114,7 +113,6 @@ export class ViewEventsComponent implements OnInit {
         });
     }
 
-    // TODO
     submitCheckedEvents(): void {
         this.sharedDataService.openSubmitModal();
         this.sharedDataService.submitModal.events = this.checkedEvents;
@@ -125,7 +123,6 @@ export class ViewEventsComponent implements OnInit {
     }
 
     autoCompleteCallback(event: any): void {
-        console.log(event);
         this.filter.latitude = event.data.geometry.location.lat;
         this.filter.longitude = event.data.geometry.location.lng;
     }

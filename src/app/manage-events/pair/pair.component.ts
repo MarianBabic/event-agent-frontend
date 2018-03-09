@@ -28,7 +28,10 @@ export class PairComponent implements OnInit {
         console.log(this.form);
         let newEvent = this.form.form.value;
         console.log(newEvent);
-        // this.restService.resolveAsEqual(newEvent, this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe();
+        /* this.restService.resolveAsEqual(newEvent, this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe(
+            result => {},
+            error => {}
+        ); */
         this.deletePair();
         // TODO: scroll to the top so message is visible
         this.sharedDataService.confirmationMessage = {

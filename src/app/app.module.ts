@@ -23,7 +23,6 @@ import { HighlightPipe } from './pipes/highlight.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 
 // services
-import { DummyDataService } from './services/dummy-data.service';
 import { RestService } from './services/rest.service';
 import { SharedDataService } from './services/shared-data.service';
 
@@ -54,7 +53,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes, { useHash: true }),
         Ng4GeoautocompleteModule.forRoot()
     ],
-    providers: [DummyDataService, RestService, SharedDataService],
+    providers: [RestService, SharedDataService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
