@@ -49,8 +49,8 @@
 
     <!-- EVENTS -->
     <div *ngIf="events && events.length; else noEvents">
-        <div class="col-xs-12 col-sm-6 m-v" *ngFor="let event of events">
-            <div *ngIf="event.$$filtered">
+        <div *ngFor="let event of events">
+            <div class="col-xs-12 col-sm-6 m-v" *ngIf="event.$$filtered">
                 <div class="btn btn-primary event" (click)="openEventDetailModal(event)">
                     <div style="overflow: hidden;">
                         <div style="display: flex;">
