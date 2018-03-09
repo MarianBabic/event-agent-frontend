@@ -19,22 +19,23 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-3">event type:</div>
-                    <div class="col-xs-9">{{ event.eventType }}</div>
+                    <div class="col-xs-9" [innerHTML]="event.eventType | highlight: filter"></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3">place:</div>
                     <div class="col-xs-9" [innerHTML]="event.place.name | highlight: filter"> </div>
                     <div class="col-xs-9 col-xs-offset-3">{{ event.place.location.street + ', ' + event.place.location.zip + ' ' + event.place.location.city +
-                        ', ' + event.place.location.country + ', latitude: ' + event.place.location.latitude + ', longitude:
-                        ' + event.place.location.longitude }}</div>
+                        ', ' + event.place.location.country }}</div>
+                    <div class="col-xs-9 col-xs-offset-3">{{ 'latitude: ' + event.place.location.latitude }}</div>
+                    <div class="col-xs-9 col-xs-offset-3">{{ 'longitude: ' + event.place.location.longitude }}</div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3">start time:</div>
-                    <div class="col-xs-9">{{ event.startTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                    <div class="col-xs-9">{{ event.startTime | date:'dd. MM. yyyy HH:mm' | highlight: filter }}</div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3">end time:</div>
-                    <div class="col-xs-9">{{ event.endTime | date:'dd. MM. yyyy HH:mm' }}</div>
+                    <div class="col-xs-9">{{ event.endTime | date:'dd. MM. yyyy HH:mm' | highlight: filter }}</div>
                 </div>
                 <div class="row">
                     <div class="col-xs-3">description:</div>

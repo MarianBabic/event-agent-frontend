@@ -89,8 +89,10 @@ export class ViewEventsComponent implements OnInit {
                 if (
                     (event.name && event.name.toUpperCase().includes(text))
                     || (event.eventType && event.eventType.toUpperCase().includes(text))
+                    || (event.place.name && event.place.name.toUpperCase().includes(text))
+                    || (event.place.location.city && event.place.location.city.toUpperCase().includes(text))
                     || (event.description && event.description.toUpperCase().includes(text))
-                    || (event.place.name && event.place.name.toUpperCase().includes(text))) {
+                ) {
                     event.$$filtered = true;
                     this.filteredEventsCount++;
                 } else {
