@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div *ngIf="sharedDataService.similarEvents && sharedDataService.similarEvents.length; else noEvents">
+    <div *ngIf="(sharedDataService.similarEvents && sharedDataService.similarEvents.length) || sharedDataService.loader; else noEvents">
         <div *ngFor="let pair of sharedDataService.similarEvents; index as i">
             <app-pair [pair]="pair" [isLast]="i === sharedDataService.similarEvents.length - 1"></app-pair>
         </div>

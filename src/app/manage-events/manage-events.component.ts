@@ -24,6 +24,9 @@ export class ManageEventsComponent implements OnInit {
         if (!this.sharedDataService.isAdmin)
             this.router.navigate(['/home']);
 
+        this.sharedDataService.loader = true;
+        this.sharedDataService.similarEvents = [];
+        this.sharedDataService.similarEventsAll = [];
         this.restService.getUnsolvedSimilarities().subscribe(
             data => {
                 this.sharedDataService.similarEventsAll = data;
@@ -32,10 +35,12 @@ export class ManageEventsComponent implements OnInit {
 
                 this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, itemsCount);
                 this.sharedDataService.similarEventsAll.splice(0, itemsCount);
+
+                this.sharedDataService.loader = false;
             },
-            err => this.sharedDataService.confirmationMessage = {
-                message: 'An error encountered while loading data from server! Please try again.',
-                error: true
+            err => {
+                this.sharedDataService.confirmationMessage = { message: 'An error encountered while loading data from server! Please try again.', error: true };
+                this.sharedDataService.loader = false;
             }
         );
     }

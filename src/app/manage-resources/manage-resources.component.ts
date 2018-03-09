@@ -29,9 +29,16 @@ export class ManageResourcesComponent implements OnInit {
         if (!this.sharedDataService.isAdmin)
             this.router.navigate(['/home']);
 
+        this.sharedDataService.loader = true;
         this.restService.getSources().subscribe(
-            sources => this.sources = sources,
-            error => this.sharedDataService.confirmationMessage = { message: 'Event sources could not be loaded due to an error!', error: true });
+            sources => {
+                this.sources = sources;
+                this.sharedDataService.loader = false;
+            },
+            error => {
+                this.sharedDataService.confirmationMessage = { message: 'Event sources could not be loaded due to an error!', error: true };
+                this.sharedDataService.loader = false;
+            });
         this.restService.getTypes().subscribe(
             types => {
                 this.defaultTypes = types.eventDefaultTypes;

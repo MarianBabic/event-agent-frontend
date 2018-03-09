@@ -48,7 +48,7 @@
     </div>
 
     <!-- EVENTS -->
-    <div *ngIf="events && events.length; else noEvents">
+    <div *ngIf="(events && events.length) || sharedDataService.loader; else noEvents">
         <div *ngFor="let event of events">
             <div class="col-xs-12 col-sm-6 m-v" *ngIf="event.$$filtered">
                 <div class="btn btn-primary event" (click)="openEventDetailModal(event)">

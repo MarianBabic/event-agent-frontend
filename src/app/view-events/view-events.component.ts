@@ -58,6 +58,8 @@ export class ViewEventsComponent implements OnInit {
 
         if (this.filter.fromDate.length > 19)
             this.filter.fromDate = this.filter.fromDate.substring(0, this.filter.fromDate.length - 5);
+
+        this.sharedDataService.loader = true;
         this.restService.getEvents(this.filter.latitude, this.filter.longitude, this.filter.range, this.filter.fromDate).subscribe(
             data => {
                 this.events = data;
@@ -65,9 +67,11 @@ export class ViewEventsComponent implements OnInit {
                     event.$$filtered = true;
                 });
                 this.filteredEventsCount = this.events.length;
+                this.sharedDataService.loader = false;
             },
             err => {
-                alert('An error encountered while loading data from server! Please try again.');
+                this.sharedDataService.confirmationMessage = { message: 'An error encountered while loading data from server! Please try again.', error: true };
+                this.sharedDataService.loader = false;
             }
         );
     }
