@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { RestService } from '../services/rest.service';
@@ -22,9 +23,12 @@ export class ManageResourcesComponent implements OnInit {
         sourceType: null,
     };
 
-    constructor(private restService: RestService, private sharedDataService: SharedDataService) { }
+    constructor(private router: Router, private restService: RestService, private sharedDataService: SharedDataService) { }
 
     ngOnInit() {
+        if (!this.sharedDataService.isAdmin)
+            this.router.navigate(['/home']);
+
         this.restService.getSources().subscribe(
             sources => this.sources = sources,
             error => this.sharedDataService.confirmationMessage = { message: 'Event sources could not be loaded due to an error!', error: true });

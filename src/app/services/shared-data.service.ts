@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class SharedDataService {
 
-    // TODO: change to false
-    isAdmin: boolean = true;
-    userId: number = 1; // TODO
+    isAdmin: boolean = false;
+    userId: number = 0;
 
     confirmationMessage = {
         message: '',

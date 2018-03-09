@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { RestService } from '../services/rest.service';
 import { SharedDataService } from '../services/shared-data.service';
 
 declare var FB: any;
@@ -12,10 +13,9 @@ declare var FB: any;
 })
 export class HeaderComponent implements OnInit {
 
-    userId: number;
     userName: string = '';
 
-    constructor(private router: Router, public sharedDataService: SharedDataService) {
+    constructor(private router: Router, private restService: RestService, public sharedDataService: SharedDataService) {
         FB.init({
             appId: '168254080466042',
             xfbml: true,  // parse social plugins on this page
@@ -35,8 +35,12 @@ export class HeaderComponent implements OnInit {
         // 2nd option: get id as parameter and exchange me <=> `/${id}`
         FB.api('me/', (response) => {
             if (response && !response.error) {
-                this.userId = this.sharedDataService.userId = response.id;
+                this.sharedDataService.userId = response.id;
                 this.userName = response.name;
+                this.restService.isAdmin(this.sharedDataService.userId).subscribe(
+                    success => this.sharedDataService.isAdmin = true,
+                    error => this.sharedDataService.confirmationMessage = { message: 'An error encountered while checking your admin privileges!', error: true }
+                );
             }
         });
     }
@@ -52,9 +56,7 @@ export class HeaderComponent implements OnInit {
             // var uid = response.authResponse.userID;
             // var accessToken = response.authResponse.accessToken;
 
-            this.sharedDataService.isAdmin = true;
             this.getUserName();
-            // TODO: check if is admin
         } else if (response.status === 'not_authorized') {
             // the user is logged in to Facebook, 
             // but has not authenticated your app
@@ -68,7 +70,7 @@ export class HeaderComponent implements OnInit {
     }
 
     showUserId(): void {
-        alert('My user ID is: ' + this.userId);
+        alert('My user ID is: ' + this.sharedDataService.userId);
     }
 
 }

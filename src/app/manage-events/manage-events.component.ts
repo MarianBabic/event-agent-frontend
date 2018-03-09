@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { RestService } from '../services/rest.service';
 import { SharedDataService } from '../services/shared-data.service';
@@ -17,9 +18,12 @@ export class ManageEventsComponent implements OnInit {
         { id: 3, name: 'number of second is subevent suggestions' }
     ];
 
-    constructor(private restService: RestService, private sharedDataService: SharedDataService) { }
+    constructor(private router: Router, private restService: RestService, private sharedDataService: SharedDataService) { }
 
     ngOnInit() {
+        if (!this.sharedDataService.isAdmin)
+            this.router.navigate(['/home']);
+
         this.restService.getUnsolvedSimilarities().subscribe(
             data => {
                 this.sharedDataService.similarEventsAll = data;
