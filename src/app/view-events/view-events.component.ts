@@ -33,14 +33,18 @@ export class ViewEventsComponent implements OnInit {
     constructor(private restService: RestService, private sharedDataService: SharedDataService) { }
 
     ngOnInit() {
-        navigator.geolocation.getCurrentPosition(position => {
-            this.filter.latitude = position.coords.latitude;
-            this.filter.longitude = position.coords.longitude;
-            if (this.filter.latitude && this.filter.longitude)
-                this.getEvents();
-            else
-                this.sharedDataService.loader = false;
-        });
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                this.filter.latitude = position.coords.latitude;
+                this.filter.longitude = position.coords.longitude;
+                if (this.filter.latitude && this.filter.longitude)
+                    this.getEvents();
+                else
+                    this.sharedDataService.loader = false;
+
+            },
+            error => this.sharedDataService.loader = false
+        );
 
         // get the event detail modal
         eventDetailModal = document.getElementById('eventDetailModal');
