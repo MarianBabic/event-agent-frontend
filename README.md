@@ -46,4 +46,4 @@ To use Google API:
 To use Facebook API:
 - create new app on developers.facebook.com and get app id
 - insert app id into header.component.ts (line 20)
-- to user facebook login, enter app urls as 'Valid OAuth redirect URIs' - 'https://localhost/', 'http://udalosti.kapsa.sk:8080/'
+- to use facebook login, enter app urls as 'Valid OAuth redirect URIs' - 'https://localhost/', 'http://udalosti.kapsa.sk:8080/'
