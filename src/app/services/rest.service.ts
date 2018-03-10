@@ -38,8 +38,8 @@ export class RestService {
     }
 
     resolveAsUnrelated(event1Id, event2Id): Observable<any> {
-        // TODO: null?
-        return this.http.put(`${this.host}/resolvedSimilarities/${event1Id}/${event2Id}`, null);
+        // no body is expected, therefore empty object
+        return this.http.put(`${this.host}/resolvedSimilarities/${event1Id}/${event2Id}`, {});
     }
 
     /*
@@ -63,6 +63,7 @@ export class RestService {
     }
 
     updateSourceFrequency(source, newFrequency): Observable<any> {
+        // no body is expected, therefore empty object
         return this.http.put(`${this.host}/eventsource/${source}/${newFrequency}`, {});
     }
 
