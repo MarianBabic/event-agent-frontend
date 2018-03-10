@@ -1,6 +1,6 @@
 <div class="col-xs-12" [ngClass]="isLast ? '' : 'b-b'">
 
-    <!-- EVENT -->
+    <!-- EVENT PAIR-->
     <div class="col-xs-12 col-sm-10 m-v">
         <div class="row">
             <div class="row">
@@ -45,11 +45,11 @@
             <div class="col-xs-3 col-sm-2">id:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.id = pair.eventOne.id"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.id = pair.eventOne.id"></span>
                     <span class="event1">{{ pair.eventOne.id }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.id = pair.eventTwo.id"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.id = pair.eventTwo.id"></span>
                     <span class="event2">{{ pair.eventTwo.id }}</span>
                 </div>
             </div>
@@ -58,11 +58,11 @@
             <div class="col-xs-3 col-sm-2">name:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.name = pair.eventOne.name"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.name = pair.eventOne.name"></span>
                     <span class="event1">{{ pair.eventOne.name }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.name = pair.eventTwo.name"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.name = pair.eventTwo.name"></span>
                     <span class="event2">{{ pair.eventTwo.name }}</span>
                 </div>
             </div>
@@ -71,11 +71,11 @@
             <div class="col-xs-3 col-sm-2">event type:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.eventType = pair.eventOne.eventType"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.eventType = pair.eventOne.eventType"></span>
                     <span class="event1">{{ pair.eventOne.eventType }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.eventType = pair.eventTwo.eventType"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.eventType = pair.eventTwo.eventType"></span>
                     <span class="event2">{{ pair.eventTwo.eventType }}</span>
                 </div>
             </div>
@@ -84,11 +84,11 @@
             <div class="col-xs-3 col-sm-2">description:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.description = pair.eventOne.description"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.description = pair.eventOne.description"></span>
                     <span class="event1">{{ pair.eventOne.description }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.description = pair.eventTwo.description"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.description = pair.eventTwo.description"></span>
                     <span class="event2">{{ pair.eventTwo.description }}</span>
                 </div>
             </div>
@@ -97,11 +97,11 @@
             <div class="col-xs-3 col-sm-2">start time:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.startTime = pair.eventOne.startTime"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.startTime = pair.eventOne.startTime"></span>
                     <span class="event1">{{ pair.eventOne.startTime | date:'dd. MM. yyyy HH:mm' }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.startTime = pair.eventTwo.startTime"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.startTime = pair.eventTwo.startTime"></span>
                     <span class="event2">{{ pair.eventTwo.startTime | date:'dd. MM. yyyy HH:mm' }}</span>
                 </div>
             </div>
@@ -110,12 +110,51 @@
             <div class="col-xs-3 col-sm-2">end time:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.endTime = pair.eventOne.endTime"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.endTime = pair.eventOne.endTime"></span>
                     <span class="event1">{{ pair.eventOne.endTime | date:'dd. MM. yyyy HH:mm' }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.endTime = pair.eventTwo.endTime"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.endTime = pair.eventTwo.endTime"></span>
                     <span class="event2">{{ pair.eventTwo.endTime | date:'dd. MM. yyyy HH:mm' }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-sm-2">parent event id:</div>
+            <div class="col-xs-9 col-sm-10">
+                <div class="col-xs-12 col-sm-6">
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.parentEventId = pair.eventOne.parentEventId"></span>
+                    <span class="event1">{{ pair.eventOne.parentEventId }}</span>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.parentEventId = pair.eventTwo.parentEventId"></span>
+                    <span class="event2">{{ pair.eventTwo.parentEventId }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-sm-2">url:</div>
+            <div class="col-xs-9 col-sm-10">
+                <div class="col-xs-12 col-sm-6">
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.url = pair.eventOne.url"></span>
+                    <span class="event1 break-word">{{ pair.eventOne.url }}</span>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.url = pair.eventTwo.url"></span>
+                    <span class="event2 break-word">{{ pair.eventTwo.url }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-sm-2">event source url:</div>
+            <div class="col-xs-9 col-sm-10">
+                <div class="col-xs-12 col-sm-6">
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.eventSourceUrl = pair.eventOne.eventSourceUrl"></span>
+                    <span class="event1 break-word">{{ pair.eventOne.eventSourceUrl }}</span>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.eventSourceUrl = pair.eventTwo.eventSourceUrl"></span>
+                    <span class="event2 break-word">{{ pair.eventTwo.eventSourceUrl }}</span>
                 </div>
             </div>
         </div>
@@ -123,11 +162,11 @@
             <div class="col-xs-3 col-sm-2">place - name:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.placeName = pair.eventOne.place.name"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.name = pair.eventOne.place.name"></span>
                     <span class="event1">{{ pair.eventOne.place.name }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.placeName = pair.eventTwo.place.name"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.name = pair.eventTwo.place.name"></span>
                     <span class="event2">{{ pair.eventTwo.place.name }}</span>
                 </div>
             </div>
@@ -136,11 +175,11 @@
             <div class="col-xs-3 col-sm-2">location - street:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationStreet = pair.eventOne.place.location.street"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.street = pair.eventOne.place.location.street"></span>
                     <span class="event1">{{ pair.eventOne.place.location.street }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationStreet = pair.eventTwo.place.location.street"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.street = pair.eventTwo.place.location.street"></span>
                     <span class="event2">{{ pair.eventTwo.place.location.street }}</span>
                 </div>
             </div>
@@ -149,11 +188,11 @@
             <div class="col-xs-3 col-sm-2">location - city:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationCity = pair.eventOne.place.location.city"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.city = pair.eventOne.place.location.city"></span>
                     <span class="event1">{{ pair.eventOne.place.location.city }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationCity = pair.eventTwo.place.location.city"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.city = pair.eventTwo.place.location.city"></span>
                     <span class="event2">{{ pair.eventTwo.place.location.city }}</span>
                 </div>
             </div>
@@ -162,11 +201,11 @@
             <div class="col-xs-3 col-sm-2">location - zip:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationZip = pair.eventOne.place.location.zip"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.zip = pair.eventOne.place.location.zip"></span>
                     <span class="event1">{{ pair.eventOne.place.location.zip }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationZip = pair.eventTwo.place.location.zip"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.zip = pair.eventTwo.place.location.zip"></span>
                     <span class="event2">{{ pair.eventTwo.place.location.zip }}</span>
                 </div>
             </div>
@@ -175,11 +214,11 @@
             <div class="col-xs-3 col-sm-2">location - country:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationCountry = pair.eventOne.place.location.country"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.country = pair.eventOne.place.location.country"></span>
                     <span class="event1">{{ pair.eventOne.place.location.country }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationCountry = pair.eventTwo.place.location.country"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.country = pair.eventTwo.place.location.country"></span>
                     <span class="event2">{{ pair.eventTwo.place.location.country }}</span>
                 </div>
             </div>
@@ -188,11 +227,11 @@
             <div class="col-xs-3 col-sm-2">location - latitude:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationLatitude = pair.eventOne.place.location.latitude"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.latitude = pair.eventOne.place.location.latitude"></span>
                     <span class="event1">{{ pair.eventOne.place.location.latitude }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationLatitude = pair.eventTwo.place.location.latitude"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.latitude = pair.eventTwo.place.location.latitude"></span>
                     <span class="event2">{{ pair.eventTwo.place.location.latitude }}</span>
                 </div>
             </div>
@@ -201,11 +240,11 @@
             <div class="col-xs-3 col-sm-2">location - longitude:</div>
             <div class="col-xs-9 col-sm-10">
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationLongitude = pair.eventOne.place.location.longitude"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.longitude = pair.eventOne.place.location.longitude"></span>
                     <span class="event1">{{ pair.eventOne.place.location.longitude }}</span>
                 </div>
                 <div class="col-xs-12 col-sm-6">
-                    <span *ngIf="isFormShown" class="arrowDown" (click)="form.locationLongitude = pair.eventTwo.place.location.longitude"></span>
+                    <span *ngIf="isFormShown" class="arrowDown" (click)="newEvent.place.location.longitude = pair.eventTwo.place.location.longitude"></span>
                     <span class="event2">{{ pair.eventTwo.place.location.longitude }}</span>
                 </div>
             </div>
@@ -220,70 +259,84 @@
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">id:</div>
-                <input class="col-xs-9 col-sm-10" type="text" name="id" value="{{ form.id }}" placeholder="Type the id here or click on the arrow above..."
-                    ngModel required/>
+                <input class="col-xs-9 col-sm-10" type="text" name="id" [(ngModel)]="newEvent.id" placeholder="Type the id here or click on the arrow above..."
+                />
             </div>
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-xs-3 col-sm-2">name:</div>
-                <input class="col-xs-9 col-sm-10" type="text" name="name" value="{{ form.name }}" placeholder="Type the name here or click on the arrow above..."
-                    ngModel required/>
-            </div> -->
+                <input class="col-xs-9 col-sm-10" type="text" name="name" [(ngModel)]="newEvent.name" placeholder="Type the name here or click on the arrow above..."
+                />
+            </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">event type:</div>
-                <input class="col-xs-9 col-sm-10" type="text" name="eventType" value="{{ form.eventType }}" placeholder="Type the event type here or click on the arrow above..."
-                    ngModel required/>
+                <input class="col-xs-9 col-sm-10" type="text" name="eventType" [(ngModel)]="newEvent.eventType" placeholder="Type the event type here or click on the arrow above..."
+                />
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">description:</div>
-                <textarea class="col-xs-9 col-sm-10 textarea" type="text" name="description" value="{{ form.description }}" placeholder="Type the description here or click on the arrow above..."
-                    ngModel required></textarea>
+                <textarea class="col-xs-9 col-sm-10 textarea" type="text" name="description" [(ngModel)]="newEvent.description" placeholder="Type the description here or click on the arrow above..."></textarea>
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">start time:</div>
-                <!-- TODO: date format -->
-                <input class="col-xs-9 col-sm-10" type="datetime-local" name="startTime" value="{{ form.startTime | date:'yyyy-MM-ddTHH:mm' }}"
-                    placeholder="Type the start time here or click on the arrow above..." ngModel required/>
+                <input class="col-xs-9 col-sm-10" type="datetime-local" name="startTime" [ngModel]="newEvent.startTime | date:'yyyy-MM-ddTHH:mm'"
+                    (ngModelChange)="newEvent.startTime = $event" placeholder="Type the start time here or click on the arrow above..."
+                />
             </div>
             <div class="row">
                 <div class="col-xs-3 col-sm-2">end time:</div>
-                <!-- TODO: date format -->
-                <input class="col-xs-9 col-sm-10" type="datetime-local" name="endTime" value="{{ form.endTime | date:'yyyy-MM-ddTHH:mm' }}"
-                    placeholder="Type the end time here or click on the arrow above..." ngModel required/>
+                <input class="col-xs-9 col-sm-10" type="datetime-local" name="endTime" [ngModel]="newEvent.endTime | date:'yyyy-MM-ddTHH:mm'"
+                    (ngModelChange)="newEvent.endTime = $event" placeholder="Type the end time here or click on the arrow above..."
+                />
             </div>
-            <div class="row" ngModelGroup="place">
+            <div class="row">
+                <div class="col-xs-3 col-sm-2">parent event id:</div>
+                <input class="col-xs-9 col-sm-10" type="text" name="parentEventId" [(ngModel)]="newEvent.parentEventId" placeholder="Type the parent event id here or click on the arrow above..."
+                />
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-2">url:</div>
+                <input class="col-xs-9 col-sm-10" type="text" name="url" [(ngModel)]="newEvent.url" placeholder="Type the url here or click on the arrow above..."
+                />
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-2">event source url:</div>
+                <input class="col-xs-9 col-sm-10" type="text" name="eventSourceUrl" [(ngModel)]="newEvent.eventSourceUrl" placeholder="Type the event source url here or click on the arrow above..."
+                />
+            </div>
+            <div class="row">
                 <div class="col-xs-3 col-sm-2">place - name:</div>
-                <input class="col-xs-9 col-sm-10" type="text" name="name" #placeName="ngModel" value="{{ form.placeName }}" placeholder="Type the place's name here or click on the arrow above..."
-                    ngModel required/>
-                <div class="col-xs-12" ngModelGroup="location">
+                <input class="col-xs-9 col-sm-10" type="text" name="placeName" [(ngModel)]="newEvent.place.name" placeholder="Type the place's name here or click on the arrow above..."
+                />
+                <div class="col-xs-12">
                     <div class="row">
-                        <div class="col-xs-4">location - street:</div>
-                        <input class="col-xs-8" type="text" name="street" #placeName="ngModel" value="{{ form.locationStreet }}" placeholder="Type the location's street here or click on the arrow above..."
-                            ngModel required/>
+                        <div class="col-xs-3 col-xs-offset-1">location - street:</div>
+                        <input class="col-xs-8" type="text" name="street" [(ngModel)]="newEvent.place.location.street" placeholder="Type the location's street here or click on the arrow above..."
+                        />
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">location - city:</div>
-                        <input class="col-xs-8" type="text" name="city" #placeName="ngModel" value="{{ form.locationCity }}" placeholder="Type the location's city here or click on the arrow above..."
-                            ngModel required/>
+                        <div class="col-xs-3 col-xs-offset-1">location - city:</div>
+                        <input class="col-xs-8" type="text" name="city" [(ngModel)]="newEvent.place.location.city" placeholder="Type the location's city here or click on the arrow above..."
+                        />
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">location - zip:</div>
-                        <input class="col-xs-8" type="text" name="zip" #placeName="ngModel" value="{{ form.locationZip }}" placeholder="Type the location's zip here or click on the arrow above..."
-                            ngModel required/>
+                        <div class="col-xs-3 col-xs-offset-1">location - zip:</div>
+                        <input class="col-xs-8" type="text" name="zip" [(ngModel)]="newEvent.place.location.zip" placeholder="Type the location's zip here or click on the arrow above..."
+                        />
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">location - country:</div>
-                        <input class="col-xs-8" type="text" name="country" #placeName="ngModel" value="{{ form.locationCountry }}" placeholder="Type the location's country here or click on the arrow above..."
-                            ngModel required/>
+                        <div class="col-xs-3 col-xs-offset-1">location - country:</div>
+                        <input class="col-xs-8" type="text" name="country" [(ngModel)]="newEvent.place.location.country" placeholder="Type the location's country here or click on the arrow above..."
+                        />
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">location - latitude:</div>
-                        <input class="col-xs-8" type="number" min="0" name="latitude" #placeName="ngModel" value="{{ form.locationLatitude }}" placeholder="Type the location's latitude here or click on the arrow above..."
-                            ngModel required/>
+                        <div class="col-xs-3 col-xs-offset-1">location - latitude:</div>
+                        <input class="col-xs-8" type="number" min="0" name="latitude" [(ngModel)]="newEvent.place.location.latitude" placeholder="Type the location's latitude here or click on the arrow above..."
+                        />
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">location - longitude:</div>
-                        <input class="col-xs-8" type="number" min="0" name="longitude" #placeName="ngModel" value="{{ form.locationLongitude }}"
-                            placeholder="Type the location's longitude here or click on the arrow above..." ngModel required/>
+                        <div class="col-xs-3 col-xs-offset-1">location - longitude:</div>
+                        <input class="col-xs-8" type="number" min="0" name="longitude" [(ngModel)]="newEvent.place.location.longitude" placeholder="Type the location's longitude here or click on the arrow above..."
+                        />
                     </div>
                 </div>
             </div>
@@ -293,9 +346,7 @@
     <!-- BUTTONS -->
     <div class="col-xs-6 col-xs-offset-3 col-sm-2 col-sm-offset-0 m-v btn-group-vertical">
         <button class="btn btn-primary" [disabled]="isDisabled" (click)="isFormShown = true; isDisabled = true;">Merge events</button>
-        <!-- TODO: disabled && required fields -->
-        <!-- TODO: [disabled]="!form || !isFormValid()" -->
-        <button class="btn btn-success" (click)="onSubmit()">Submit merging</button>
+        <button class="btn btn-success" [disabled]="!isFormValid()" (click)="onSubmit()">Submit merging</button>
         <button class="btn btn-success" (click)="resolveAsSubevents(1)">First is subevent</button>
         <button class="btn btn-success" (click)="resolveAsSubevents(2)">Second is subevent</button>
         <button class="btn btn-danger" (click)="onDelete()">Resolve as unrelated</button>

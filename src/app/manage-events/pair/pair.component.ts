@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
 
 import { RestService } from '../../services/rest.service';
 import { SharedDataService } from '../../services/shared-data.service';
@@ -13,31 +12,56 @@ export class PairComponent implements OnInit {
 
     @Input() pair: any[];
     @Input() isLast: boolean;
-    @ViewChild('form') private form: NgForm;
+    newEvent = {
+        description: '',
+        endTime: '',
+        equalEvents: [],
+        eventSourceUrl: '',
+        eventType: '',
+        id: '',
+        name: '',
+        parentEventId: '',
+        place: {
+            location: {
+                city: '',
+                country: '',
+                latitude: null,
+                longitude: null,
+                street: '',
+                zip: ''
+            },
+            name: ''
+        },
+        startTime: '',
+        subEvents: [],
+        url: ''
+    };
 
     constructor(private restService: RestService, private sharedDataService: SharedDataService) { }
 
     ngOnInit() { }
 
     isFormValid(): boolean {
-        return this.form['name'] && this.form['description'] && this.form['startTime'] && this.form['endTime'] && this.form['placeName'];
+        // parentEventId is not required, equalEvents & subEvents arrays may be empty
+        return this.newEvent.description.length > 0 && this.newEvent.endTime.length > 0 && this.newEvent.eventSourceUrl.length > 0 && this.newEvent.eventType.length > 0
+            && this.newEvent.id.length > 0 && this.newEvent.name.length > 0 && this.newEvent.place.location.city.length > 0 && this.newEvent.place.location.country.length > 0
+            && this.newEvent.place.location.latitude && this.newEvent.place.location.longitude && this.newEvent.place.location.street.length > 0 && this.newEvent.place.location.zip.length > 0
+            && this.newEvent.place.name.length > 0 && this.newEvent.startTime.length > 0 && this.newEvent.url.length > 0;
     }
 
-    // TODO
     onSubmit(index: number): void {
-        console.log(this.form);
-        let newEvent = this.form.form.value;
-        console.log(newEvent);
-        /* this.restService.resolveAsEqual(newEvent, this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe(
-            result => {},
-            error => {}
-        ); */
-        this.deletePair();
-        // TODO: scroll to the top so message is visible
-        this.sharedDataService.confirmationMessage = {
-            message: `You have merged the pair of events: '${this.pair['id']}'`,
-            error: false
-        };
+        this.newEvent.equalEvents = this.pair['eventOne'].equalEvents.concat(this.pair['eventTwo'].equalEvents);
+        this.newEvent.subEvents = this.pair['eventOne'].subEvents.concat(this.pair['eventTwo'].subEvents);
+        this.restService.resolveAsEqual(this.newEvent, this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe(
+            result => {
+                this.deletePair();
+                this.sharedDataService.confirmationMessage = {
+                    message: `You have merged the pair of events: '${this.pair['id']}'`,
+                    error: false
+                };
+            },
+            error => this.sharedDataService.confirmationMessage = { message: `Your request to merge the pair of events: '${this.pair['id']}' was not finished successfully.`, error: true }
+        );
     }
 
     resolveAsSubevents(subEvent: number): void {
@@ -61,7 +85,6 @@ export class PairComponent implements OnInit {
         // to delete the pair from the server
         this.restService.resolveAsUnrelated(this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe(
             result => {
-                // TODO: scroll to the top so message is visible
                 this.sharedDataService.confirmationMessage = {
                     message: `You have marked the pair of events: '${this.pair['id']}' as unrelated`,
                     error: false
@@ -83,12 +106,6 @@ export class PairComponent implements OnInit {
                 this.sharedDataService.similarEventsAll.splice(0, 1);
             }
         }
-    }
-
-    // TODO
-    register(form: NgForm): void {
-        console.log('Successful registration');
-        console.log(form);
     }
 
 }
