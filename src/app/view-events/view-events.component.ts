@@ -38,6 +38,8 @@ export class ViewEventsComponent implements OnInit {
             this.filter.longitude = position.coords.longitude;
             if (this.filter.latitude && this.filter.longitude)
                 this.getEvents();
+            else
+                this.sharedDataService.loader = false;
         });
 
         // get the event detail modal
