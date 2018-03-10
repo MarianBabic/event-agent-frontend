@@ -13,12 +13,11 @@ var eventDetailModal: HTMLElement;
 })
 export class ViewEventsComponent implements OnInit {
 
-    // TODO
     events: any = [];
     filter = {
         latitude: null,
         longitude: null,
-        range: 1000, // TODO: 10
+        range: 10,
         fromDate: new Date().toISOString() // TODO: timezone offset
     };
     filteredEventsCount: number = 0;

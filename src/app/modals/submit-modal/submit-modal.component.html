@@ -13,7 +13,6 @@
 
         <div class="modal-body">
             <div *ngIf="isHintTypeIdentical; else nestedEvents">
-                <!-- TODO: use names or use ids in view events -->
                 Events IDs:
                 <div *ngFor="let event of sharedDataService.submitModal.events">
                     {{ event }}

@@ -62,7 +62,6 @@ export class SubmitModalComponent implements OnInit {
 
     onSubmit(): void {
         this.sharedDataService.closeSubmitModal();
-        // TODO: zobrazit mena eventov namiesto ich id
         if (this.isHintTypeIdentical) {
             const idsIiterator = this.sharedDataService.submitModal.events.values();
             this.event1 = idsIiterator.next().value;
