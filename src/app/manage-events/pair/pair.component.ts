@@ -55,12 +55,9 @@ export class PairComponent implements OnInit {
         this.restService.resolveAsEqual(this.newEvent, this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe(
             result => {
                 this.deletePair();
-                this.sharedDataService.confirmationMessage = {
-                    message: `You have merged the pair of events: '${this.pair['id']}'`,
-                    error: false
-                };
+                this.sharedDataService.showConfirmationMessage(`You have merged the pair of events: '${this.pair['id']}'`, false);
             },
-            error => this.sharedDataService.confirmationMessage = { message: `Your request to merge the pair of events: '${this.pair['id']}' was not finished successfully.`, error: true }
+            error => this.sharedDataService.showConfirmationMessage(`Your request to merge the pair of events: '${this.pair['id']}' was not finished successfully.`, true)
         );
     }
 
@@ -69,15 +66,13 @@ export class PairComponent implements OnInit {
         const childId = (subEvent === 1) ? this.pair['eventOne'].id : this.pair['eventTwo'].id;
         this.restService.resolveAsSubevents(parentId, childId).subscribe(
             result => {
-                this.sharedDataService.confirmationMessage = { message: `You have marked the event '${childId}' to be subevent of event '${parentId}'`, error: false };
+                this.sharedDataService.showConfirmationMessage(`You have marked the event '${childId}' to be subevent of event '${parentId}'`, false);
                 this.deletePair();
             },
-            error => {
-                this.sharedDataService.confirmationMessage = {
-                    message: `Your request to mark the event '${childId}' to be subevent of event '${parentId}' was not finished successfully. You were to make 3 levels of subevents (parent - child - grandchild)`,
-                    error: true
-                };
-            }
+            error =>
+                this.sharedDataService.showConfirmationMessage(
+                    `Your request to mark the event '${childId}' to be subevent of event '${parentId}' was not finished successfully. You were to make 3 levels of subevents (parent - child - grandchild)`,
+                    true)
         );
     }
 
@@ -85,15 +80,10 @@ export class PairComponent implements OnInit {
         // to delete the pair from the server
         this.restService.resolveAsUnrelated(this.pair['eventOne'].id, this.pair['eventTwo'].id).subscribe(
             result => {
-                this.sharedDataService.confirmationMessage = {
-                    message: `You have marked the pair of events: '${this.pair['id']}' as unrelated`,
-                    error: false
-                };
+                this.sharedDataService.showConfirmationMessage(`You have marked the pair of events: '${this.pair['id']}' as unrelated`, false);
                 this.deletePair();
             },
-            error => {
-                this.sharedDataService.confirmationMessage = { message: `Your request to resolve the pair of events was not finished successfully!`, error: true };
-            }
+            error => this.sharedDataService.showConfirmationMessage(`Your request to resolve the pair of events was not finished successfully!`, error)
         );
     }
 

@@ -75,7 +75,7 @@ export class ViewEventsComponent implements OnInit {
                 this.sharedDataService.loader = false;
             },
             err => {
-                this.sharedDataService.confirmationMessage = { message: 'An error encountered while loading data from server! Please try again.', error: true };
+                this.sharedDataService.showConfirmationMessage('An error encountered while loading data from server! Please try again.', true);
                 this.sharedDataService.loader = false;
             }
         );

@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
                 this.userName = response.name;
                 this.restService.isAdmin(this.sharedDataService.userId).subscribe(
                     success => this.sharedDataService.isAdmin = true,
-                    error => this.sharedDataService.confirmationMessage = { message: 'An error encountered while checking your admin privileges!', error: true }
+                    error => this.sharedDataService.showConfirmationMessage('An error encountered while checking your admin privileges!', true)
                 );
             }
         });

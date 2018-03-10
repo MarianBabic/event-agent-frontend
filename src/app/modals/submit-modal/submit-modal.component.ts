@@ -67,27 +67,15 @@ export class SubmitModalComponent implements OnInit {
             this.event1 = idsIiterator.next().value;
             this.event2 = idsIiterator.next().value;
             this.restService.hintAsEqual(this.sharedDataService.userId, this.event1, this.event2).subscribe(
-                success => this.sharedDataService.confirmationMessage = {
-                    message: `You have hinted 2 events as identical: 'id1: ${this.event1}' & 'id2: ${this.event2}'`,
-                    error: false
-                },
-                error => this.sharedDataService.confirmationMessage = {
-                    message: 'Your hint was not accepted. Please try again!',
-                    error: true
-                }
+                success => this.sharedDataService.showConfirmationMessage(`You have hinted 2 events as identical: 'id1: ${this.event1}' & 'id2: ${this.event2}'`, false),
+                error => this.sharedDataService.showConfirmationMessage('Your hint was not accepted. Please try again!', true)
             );
         } else {
             const parentId = this.checkboxes.parent1 ? this.event1 : this.event2;
             const childId = this.checkboxes.child1 ? this.event1 : this.event2;
             this.restService.hintAsSubevent(this.sharedDataService.userId, parentId, childId).subscribe(
-                success => this.sharedDataService.confirmationMessage = {
-                    message: `You have hinted that the event 'id1: ${parentId}' is parent of the event 'id2: ${childId}'`,
-                    error: false
-                },
-                error => this.sharedDataService.confirmationMessage = {
-                    message: 'Your hint was not accepted. Please try again!',
-                    error: true
-                }
+                success => this.sharedDataService.showConfirmationMessage(`You have hinted that the event 'id1: ${parentId}' is parent of the event 'id2: ${childId}'`, false),
+                error => this.sharedDataService.showConfirmationMessage('Your hint was not accepted. Please try again!', true)
             );
         }
     }

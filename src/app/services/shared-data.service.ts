@@ -34,8 +34,10 @@ export class SharedDataService {
         this.confirmationMessage.message = '';
     }
 
-    showConfirmationMessage(message: string): void {
+    showConfirmationMessage(message: string, error: boolean): void {
         this.confirmationMessage.message = message;
+        this.confirmationMessage.error = error;
+        window.scrollTo(0, 0);
     }
 
     /* SUBMIT MODAL */

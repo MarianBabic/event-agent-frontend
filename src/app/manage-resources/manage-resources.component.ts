@@ -36,7 +36,7 @@ export class ManageResourcesComponent implements OnInit {
                 this.sharedDataService.loader = false;
             },
             error => {
-                this.sharedDataService.confirmationMessage = { message: 'Event sources could not be loaded due to an error!', error: true };
+                this.sharedDataService.showConfirmationMessage('Event sources could not be loaded due to an error!', true);
                 this.sharedDataService.loader = false;
             });
         this.restService.getTypes().subscribe(
@@ -44,7 +44,7 @@ export class ManageResourcesComponent implements OnInit {
                 this.defaultTypes = types.eventDefaultTypes;
                 this.sourceTypes = types.sourceTypes;
             },
-            error => this.sharedDataService.confirmationMessage = { message: 'Event types could not be loaded due to an error!', error: true }
+            error => this.sharedDataService.showConfirmationMessage('Event types could not be loaded due to an error!', true)
         );
     }
 
@@ -52,18 +52,10 @@ export class ManageResourcesComponent implements OnInit {
         const body = { adminFbId: this.newAdmin };
         this.restService.addNewAdmin(body).subscribe(
             success => {
-                this.sharedDataService.confirmationMessage = {
-                    message: `You have added new admin with user id: '${this.newAdmin}'`,
-                    error: false
-                };
+                this.sharedDataService.showConfirmationMessage(`You have added new admin with user id: '${this.newAdmin}'`, false);
                 this.newAdmin = null;
             },
-            error => {
-                this.sharedDataService.confirmationMessage = {
-                    message: 'New admin was not added due to an error!',
-                    error: true
-                };
-            }
+            error => this.sharedDataService.showConfirmationMessage('New admin was not added due to an error!', true)
         );
     }
 
@@ -74,17 +66,9 @@ export class ManageResourcesComponent implements OnInit {
                     if (this.sources[i].id === response.id)
                         this.sources[i] = response;
                 };
-                this.sharedDataService.confirmationMessage = {
-                    message: `You have changed frequency of event source '${source.sourceURL}' to ${newFrequency} hour(s).`,
-                    error: false
-                };
+                this.sharedDataService.showConfirmationMessage(`You have changed frequency of event source '${source.sourceURL}' to ${newFrequency} hour(s).`, false);
             },
-            error => {
-                this.sharedDataService.confirmationMessage = {
-                    message: `The frequency of event source '${source.sourceURL}' was not changed due to an error!`,
-                    error: true
-                };
-            }
+            error => this.sharedDataService.showConfirmationMessage(`The frequency of event source '${source.sourceURL}' was not changed due to an error!`, true)
         );
     }
 
@@ -95,17 +79,9 @@ export class ManageResourcesComponent implements OnInit {
                     if (this.sources[i].id === source.id)
                         this.sources.splice(i, 1);
                 }
-                this.sharedDataService.confirmationMessage = {
-                    message: `You have deleted event source: '${source.sourceURL}'`,
-                    error: false
-                };
+                this.sharedDataService.showConfirmationMessage(`You have deleted event source: '${source.sourceURL}'`, false);
             },
-            error => {
-                this.sharedDataService.confirmationMessage = {
-                    message: `The event source '${source.sourceURL}' was not deleted due to an error!`,
-                    error: true
-                };
-            }
+            error => this.sharedDataService.showConfirmationMessage(`The event source '${source.sourceURL}' was not deleted due to an error!`, true)
         );
     }
 
@@ -113,10 +89,7 @@ export class ManageResourcesComponent implements OnInit {
         this.restService.addSource(this.newSource).subscribe(
             newSource => {
                 this.sources.push(newSource);
-                this.sharedDataService.confirmationMessage = {
-                    message: `You have added new event source: '${this.newSource.source}'`,
-                    error: false
-                };
+                this.sharedDataService.showConfirmationMessage(`You have added new event source: '${this.newSource.source}'`, false);
                 this.newSource = {
                     defaultType: null,
                     frequency: null,
@@ -124,12 +97,7 @@ export class ManageResourcesComponent implements OnInit {
                     sourceType: null,
                 };
             },
-            error => {
-                this.sharedDataService.confirmationMessage = {
-                    message: 'New source was not added due to an error!',
-                    error: true
-                };
-            }
+            error => this.sharedDataService.showConfirmationMessage('New source was not added due to an error!', true)
         );
     }
 
