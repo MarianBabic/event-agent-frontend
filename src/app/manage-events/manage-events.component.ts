@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { RestService } from '../services/rest.service';
@@ -11,6 +11,7 @@ import { SharedDataService } from '../services/shared-data.service';
 })
 export class ManageEventsComponent implements OnInit {
 
+    itemsCount: number; // default amount of shown pairs of events
     sortOptions = [
         { id: 0, name: 'probability of equality' },
         { id: 1, name: 'number of equality suggestions' },
@@ -31,10 +32,10 @@ export class ManageEventsComponent implements OnInit {
             data => {
                 this.sharedDataService.similarEventsAll = data;
 
-                let itemsCount = data.length >= 20 ? 20 : data.length;
+                this.itemsCount = data.length >= 10 ? 10 : data.length;
 
-                this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, itemsCount);
-                this.sharedDataService.similarEventsAll.splice(0, itemsCount);
+                this.sharedDataService.similarEvents = this.sharedDataService.similarEventsAll.slice(0, this.itemsCount);
+                this.sharedDataService.similarEventsAll.splice(0, this.itemsCount);
 
                 this.sharedDataService.loader = false;
             },
@@ -75,6 +76,15 @@ export class ManageEventsComponent implements OnInit {
                 case -1: // this is default(empty) option
                 default: // do nothing
             }
+    }
+
+    // to dynamically add more pairs of events from similarEventsAll array into similarEvents array
+    @HostListener('window:scroll', ['$event'])
+    onWindowScroll() {
+        if (window.innerHeight + window.scrollY === document.documentElement.scrollHeight && this.sharedDataService.similarEventsAll.length > 0) {
+            this.sharedDataService.similarEvents = this.sharedDataService.similarEvents.concat(this.sharedDataService.similarEventsAll.slice(0, this.itemsCount));
+            this.sharedDataService.similarEventsAll.splice(0, this.itemsCount);
+        }
     }
 
 }
